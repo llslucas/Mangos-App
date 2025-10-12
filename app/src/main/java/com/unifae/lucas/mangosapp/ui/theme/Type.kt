@@ -52,15 +52,15 @@ val Typography = Typography(
   // Numbers
   bodyLarge = TextStyle( // number-md
     fontFamily = Roboto,
-    fontWeight = FontWeight.Normal,
-    fontSize = 16.sp,
-    lineHeight = 24.sp
+    fontWeight = FontWeight.Bold,
+    fontSize = 24.sp,
+    lineHeight = 32.sp
   ),
   bodyMedium = TextStyle( // number-sm
     fontFamily = Roboto,
-    fontWeight = FontWeight.Normal,
-    fontSize = 14.sp,
-    lineHeight = 16.sp
+    fontWeight = FontWeight.SemiBold,
+    fontSize = 16.sp,
+    lineHeight = 18.sp
   ),
 
   // Texts (Roboto)
