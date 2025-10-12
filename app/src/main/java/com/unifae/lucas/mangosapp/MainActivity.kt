@@ -7,12 +7,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.unifae.lucas.mangosapp.ui.component.Footer
-import com.unifae.lucas.mangosapp.ui.component.Result
+import com.unifae.lucas.mangosapp.ui.component.HeaderCard
 import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,13 +18,7 @@ class MainActivity : ComponentActivity() {
     setContent {
       MangosAppTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-          Footer(
-            modifier = Modifier.padding(innerPadding),
-            selected = 2,
-            onClick = { selected ->
-              println(selected)
-            }
-          )
+          HeaderCard(modifier = Modifier.padding(innerPadding)) {  }
         }
       }
     }
