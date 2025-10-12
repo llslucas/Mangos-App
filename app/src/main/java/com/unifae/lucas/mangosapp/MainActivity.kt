@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.unifae.lucas.mangosapp.ui.component.Result
 import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,28 +21,13 @@ class MainActivity : ComponentActivity() {
     setContent {
       MangosAppTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-          Greeting(
-            name = "Android",
-            modifier = Modifier.padding(innerPadding)
+          Result(
+            modifier = Modifier.padding(innerPadding),
+            value = 3333.33f,
+            showValues = true
           )
         }
       }
     }
-  }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-  Text(
-    text = "Hello $name!",
-    modifier = modifier
-  )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-  MangosAppTheme {
-    Greeting("Android")
   }
 }
