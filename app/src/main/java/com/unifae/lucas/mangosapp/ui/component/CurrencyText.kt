@@ -9,6 +9,7 @@ import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.ui.theme.Primary
 import com.unifae.lucas.mangosapp.ui.theme.Secondary
 import com.unifae.lucas.mangosapp.ui.theme.Typography
+import kotlin.math.absoluteValue
 
 enum class CurrencySize(val style: TextStyle) {
   MEDIUM(Typography.bodyMedium),
@@ -18,7 +19,7 @@ enum class CurrencySize(val style: TextStyle) {
 @Composable
 fun CurrencyText(modifier: Modifier = Modifier, value: Float, showValues: Boolean, size: CurrencySize) {
   val color = if (value > 0) Primary else Secondary
-  val displayValue = if (showValues) value.toString() else " - - - - - -"
+  val displayValue = if (showValues) value.absoluteValue.toString() else " - - - - - -"
 
   Text(
     modifier = modifier,
