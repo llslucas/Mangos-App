@@ -2,33 +2,78 @@ package com.unifae.lucas.mangosapp.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.unifae.lucas.mangosapp.R
 
-// Set of Material typography styles to start with
+val Roboto = FontFamily(
+    Font(R.font.roboto_regular, FontWeight.Normal),
+  Font(R.font.roboto_semibold, FontWeight.SemiBold),
+  Font(R.font.roboto_bold, FontWeight.Bold)
+)
+
+val RobotoCondensed = FontFamily(
+  Font(R.font.roboto_condensed_regular, FontWeight.Normal),
+  Font(R.font.roboto_condensed_semibold, FontWeight.SemiBold),
+  Font(R.font.roboto_condensed_bold, FontWeight.Bold)
+)
+
 val Typography = Typography(
-  bodyLarge = TextStyle(
-    fontFamily = FontFamily.Default,
+  // Headings (Roboto Condensed)
+  headlineLarge = TextStyle(
+    fontFamily = RobotoCondensed,
+    fontWeight = FontWeight.Bold,
+    fontSize = 24.sp,
+    lineHeight = 32.sp
+  ),
+  headlineMedium = TextStyle(
+    fontFamily = RobotoCondensed,
+    fontWeight = FontWeight.SemiBold,
+    fontSize = 16.sp,
+    lineHeight = 24.sp
+  ),
+  headlineSmall = TextStyle(
+    fontFamily = RobotoCondensed,
+    fontWeight = FontWeight.SemiBold,
+    fontSize = 14.sp,
+    lineHeight = 16.sp
+  ),
+
+  // Subheading
+  titleSmall = TextStyle(
+    fontFamily = Roboto,
+    fontWeight = FontWeight.SemiBold,
+    fontSize = 14.sp,
+    lineHeight = 16.sp
+  ),
+
+  // Numbers
+  bodyLarge = TextStyle( // number-md
+    fontFamily = Roboto,
     fontWeight = FontWeight.Normal,
     fontSize = 16.sp,
-    lineHeight = 24.sp,
-    letterSpacing = 0.5.sp
+    lineHeight = 24.sp
+  ),
+  bodyMedium = TextStyle( // number-sm
+    fontFamily = Roboto,
+    fontWeight = FontWeight.Normal,
+    fontSize = 14.sp,
+    lineHeight = 16.sp
+  ),
+
+  // Texts (Roboto)
+  displayLarge = TextStyle( // text1
+    fontFamily = Roboto,
+    fontWeight = FontWeight.Normal,
+    fontSize = 32.sp,
+    lineHeight = (32.sp * 1.2f) // 120%
+  ),
+  displayMedium = TextStyle( // text2
+    fontFamily = Roboto,
+    fontWeight = FontWeight.Normal,
+    fontSize = 24.sp,
+    lineHeight = (24.sp * 1.2f) // 120%
   )
-  /* Other default text styles to override
-    titleLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
-    ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-    */
 )
