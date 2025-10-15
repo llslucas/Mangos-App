@@ -23,22 +23,22 @@ val RobotoCondensed = FontFamily(
 val Typography = Typography(
   // Headings (Roboto Condensed)
   headlineLarge = TextStyle(
-    fontFamily = RobotoCondensed,
+    fontFamily = Roboto,
     fontWeight = FontWeight.Bold,
     fontSize = 24.sp,
     lineHeight = 32.sp
   ),
   headlineMedium = TextStyle(
-    fontFamily = RobotoCondensed,
-    fontWeight = FontWeight.SemiBold,
-    fontSize = 16.sp,
+    fontFamily = Roboto,
+    fontWeight = FontWeight.Bold,
+    fontSize = 18.sp,
     lineHeight = 24.sp
   ),
   headlineSmall = TextStyle(
-    fontFamily = RobotoCondensed,
+    fontFamily = Roboto,
     fontWeight = FontWeight.SemiBold,
     fontSize = 14.sp,
-    lineHeight = 16.sp
+    lineHeight = 18.sp
   ),
 
   // Subheading
