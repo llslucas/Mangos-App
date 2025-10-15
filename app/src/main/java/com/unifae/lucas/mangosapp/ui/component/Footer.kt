@@ -1,5 +1,6 @@
 package com.unifae.lucas.mangosapp.ui.component
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -19,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.unifae.lucas.mangosapp.R
+import com.unifae.lucas.mangosapp.ui.theme.DarkSurface
 import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.ui.theme.Primary
 
@@ -26,8 +28,9 @@ import com.unifae.lucas.mangosapp.ui.theme.Primary
 fun Footer(modifier: Modifier = Modifier, selected: Int, onClick: (selected: Int) -> Unit) {
   Row(
     modifier = modifier
+      .background(color = DarkSurface)
       .height(MangosAppTheme.sizing.x2l)
-      .padding(MangosAppTheme.sizing.sm)
+      .padding(vertical = MangosAppTheme.sizing.sm, horizontal = MangosAppTheme.sizing.lg)
       .fillMaxWidth(),
     verticalAlignment = Alignment.CenterVertically,
     horizontalArrangement = Arrangement.SpaceBetween,

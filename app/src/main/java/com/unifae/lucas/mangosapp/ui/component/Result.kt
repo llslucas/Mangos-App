@@ -24,7 +24,7 @@ import kotlin.math.absoluteValue
 fun Result(modifier: Modifier = Modifier, value: Float, showValues: Boolean) {
   val icon = if (value > 0) Icons.Default.ArrowCircleUp else Icons.Default.ArrowCircleDown
   val color = if (value > 0) Primary else Secondary
-  val text = if (value > 0) "Receita" else "Despesa"
+  val text = if (value > 0) "Receitas" else "Despesas"
 
   Row(
     modifier = modifier,
@@ -40,7 +40,7 @@ fun Result(modifier: Modifier = Modifier, value: Float, showValues: Boolean) {
     Column {
       Text(
         text= text,
-        style= Typography.headlineMedium,
+        style= Typography.headlineLarge,
       )
       CurrencyText(
         value = value,
