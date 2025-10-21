@@ -40,7 +40,7 @@ fun Transaction(modifier: Modifier = Modifier, description: String, time: String
   ) {
     Icon(
       modifier = Modifier
-        .rotate(if (value >= 0) 45f else -135f)
+        .rotate(if (value >= 0) -135f else 45f)
         .fillMaxHeight()
         .aspectRatio(1f)
         .background(color = MaterialTheme.colorScheme.surface, shape = CircleShape)
