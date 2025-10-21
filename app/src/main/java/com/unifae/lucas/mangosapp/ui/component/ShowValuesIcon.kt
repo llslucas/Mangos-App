@@ -1,16 +1,16 @@
 package com.unifae.lucas.mangosapp.ui.component
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults.iconButtonColors
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.unifae.lucas.mangosapp.ui.theme.DarkTextPrimary
 import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
 
@@ -22,7 +22,7 @@ fun ShowValuesIcon(modifier: Modifier = Modifier, showValues: Boolean, onClick:(
       onClick()
     },
     colors = iconButtonColors(
-      contentColor = DarkTextPrimary
+      contentColor = MaterialTheme.colorScheme.onBackground
     )
 
   ) {
@@ -37,7 +37,7 @@ fun ShowValuesIcon(modifier: Modifier = Modifier, showValues: Boolean, onClick:(
   }
 }
 
-@Preview
+@PreviewLightDark
 @Composable
 private fun ShowValuesIconPreview() {
   MangosAppTheme {

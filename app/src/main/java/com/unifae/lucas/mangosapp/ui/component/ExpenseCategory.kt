@@ -2,10 +2,8 @@ package com.unifae.lucas.mangosapp.ui.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -14,14 +12,13 @@ import androidx.compose.material.icons.filled.AccountBalance
 import androidx.compose.material.icons.filled.MedicalServices
 import androidx.compose.material.icons.filled.Restaurant
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.unifae.lucas.mangosapp.ui.theme.DarkTextPrimary
 import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
@@ -60,6 +57,7 @@ fun ExpenseCategory(
       Text(
         text = name,
         style = Typography.headlineMedium,
+        color = MaterialTheme.colorScheme.onBackground
       )
       CurrencyText(
         value = value,
@@ -70,7 +68,7 @@ fun ExpenseCategory(
   }
 }
 
-@Preview(showBackground = true)
+@PreviewLightDark
 @Composable
 private fun ExpenseCategoryPreview() {
   MangosAppTheme {

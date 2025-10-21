@@ -14,13 +14,13 @@ import androidx.compose.material.icons.filled.RequestPage
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.unifae.lucas.mangosapp.R
-import com.unifae.lucas.mangosapp.ui.theme.DarkSurface
 import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.ui.theme.Primary
 
@@ -28,7 +28,7 @@ import com.unifae.lucas.mangosapp.ui.theme.Primary
 fun Footer(modifier: Modifier = Modifier, selected: Int, onClick: (selected: Int) -> Unit) {
   Row(
     modifier = modifier
-      .background(color = DarkSurface)
+      .background(color = MaterialTheme.colorScheme.surface)
       .height(MangosAppTheme.sizing.x2l)
       .padding(vertical = MangosAppTheme.sizing.sm, horizontal = MangosAppTheme.sizing.lg)
       .fillMaxWidth(),
@@ -85,7 +85,7 @@ fun Footer(modifier: Modifier = Modifier, selected: Int, onClick: (selected: Int
   }
 }
 
-@Preview(showBackground = true)
+@PreviewLightDark
 @Composable
 private fun FooterPreview() {
   MangosAppTheme {

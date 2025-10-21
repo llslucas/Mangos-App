@@ -8,17 +8,17 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowCircleDown
 import androidx.compose.material.icons.filled.ArrowCircleUp
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.ui.theme.Primary
 import com.unifae.lucas.mangosapp.ui.theme.Secondary
 import com.unifae.lucas.mangosapp.ui.theme.Typography
-import kotlin.math.absoluteValue
 
 @Composable
 fun Result(modifier: Modifier = Modifier, value: Float, showValues: Boolean) {
@@ -41,6 +41,7 @@ fun Result(modifier: Modifier = Modifier, value: Float, showValues: Boolean) {
       Text(
         text= text,
         style= Typography.headlineLarge,
+        color= MaterialTheme.colorScheme.onBackground
       )
       CurrencyText(
         value = value,
@@ -51,7 +52,7 @@ fun Result(modifier: Modifier = Modifier, value: Float, showValues: Boolean) {
   }
 }
 
-@Preview (showBackground = true)
+@PreviewLightDark
 @Composable
 private fun ResultPreview() {
   MangosAppTheme {
