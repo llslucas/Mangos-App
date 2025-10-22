@@ -7,7 +7,10 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,11 +28,11 @@ import com.unifae.lucas.mangosapp.ui.component.ScreenHeader
 import com.unifae.lucas.mangosapp.ui.component.SearchBar
 import com.unifae.lucas.mangosapp.ui.component.Transaction
 import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
+import com.unifae.lucas.mangosapp.ui.theme.Typography
 
 @Composable
 fun ExtratoScreen() {
   var showValues by remember { mutableStateOf(true) }
-
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
     Column(
       modifier = Modifier
@@ -71,9 +74,18 @@ fun ExtratoScreen() {
       )
 
       Column(
-        modifier = Modifier.padding(MangosAppTheme.sizing.sm).fillMaxHeight(.8f),
-        Arrangement.spacedBy(MangosAppTheme.sizing.md)
+        modifier = Modifier
+          .padding(MangosAppTheme.sizing.sm).
+          fillMaxHeight(.8f)
+        ,Arrangement
+          .spacedBy(MangosAppTheme.sizing.md),
+        horizontalAlignment = Alignment.Start
       ) {
+        Text(
+          text="Hoje",
+          style= Typography.bodyMedium,
+          color= MaterialTheme.colorScheme.onPrimary
+        )
         Transaction(
           description = "Talia Silva",
           time = "18:30",
@@ -92,6 +104,11 @@ fun ExtratoScreen() {
           type = "Nubank Crédito",
           value = 1500f
         )
+        Text(
+          text="25 Set",
+          style= Typography.bodyMedium,
+          color= MaterialTheme.colorScheme.onPrimary
+        )
         Transaction(
           description = "Lucas Luiz",
           time = "21:13",
@@ -105,7 +122,6 @@ fun ExtratoScreen() {
           value = -250f
         )
       }
-
       Footer(
         selected = 1,
         onClick = {}
