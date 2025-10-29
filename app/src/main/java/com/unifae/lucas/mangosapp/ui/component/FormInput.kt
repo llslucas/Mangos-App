@@ -3,6 +3,7 @@ package com.unifae.lucas.mangosapp.ui.component
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -33,7 +34,8 @@ fun FormInput(
     Text(
       text = title,
       style = Typography.headlineMedium,
-      color = MaterialTheme.colorScheme.onBackground
+      color = MaterialTheme.colorScheme.onBackground,
+      modifier = Modifier.padding(start = MangosAppTheme.sizing.sm)
     )
     OutlinedTextField(
       modifier = Modifier.fillMaxWidth(),
