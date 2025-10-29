@@ -10,8 +10,8 @@ val Secondary = Color(0xFFFF3814)
 val DarkBackground = Color(0xFF121212)
 val DarkSurface = Color(0xFF1E1E1E)
 val DarkSurfaceElement = Color(0xFFFFFFFF)
-val DarkTextPrimary = Color(0xFFFFFFFF)
-val DarkTextSecondary = Color(0xFFFFFFFF)
+val DarkTextPrimary = Color(0xFFF0F0F0)
+val DarkTextSecondary = Color(0xFFBABABA)
 
 // Base - Tema Claro
 val LightBackground = Color(0xFFFFFFFF)
