@@ -55,7 +55,7 @@ fun CreateBankScreen(modifier: Modifier = Modifier) {
           onChange = {}
         )
         FormInput(
-          title = "Data",
+          title = "Conta",
           placeholder = "Exemplo: 12345-6 ",
           value = "",
           onChange = {}
