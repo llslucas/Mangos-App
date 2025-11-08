@@ -35,7 +35,9 @@ import com.unifae.lucas.mangosapp.viewmodel.ExtratoScreenViewModel
 
 @Composable
 fun ExtratoScreen(
-  viewModel: ExtratoScreenViewModel = viewModel()
+  viewModel: ExtratoScreenViewModel = viewModel(),
+  onChangeToHome: () -> Unit = {},
+  onChangeToMetas: () -> Unit = {}
 ) {
   val uiState by viewModel.uiState.collectAsState()
 
@@ -133,7 +135,12 @@ fun ExtratoScreen(
       }
       Footer(
         selected = 1,
-        onClick = {}
+        onClick = { button ->
+          when (button) {
+            2 -> onChangeToHome()
+            3 -> onChangeToMetas()
+          }
+        }
       )
     }
   }

@@ -24,7 +24,9 @@ import com.unifae.lucas.mangosapp.viewmodel.MetaScreenViewModel
 @Composable
 fun MetaScreen(
   modifier: Modifier = Modifier,
-  viewModel: MetaScreenViewModel = viewModel()
+  viewModel: MetaScreenViewModel = viewModel(),
+  onChangeToHome: () -> Unit = {} ,
+  onChangeToExtrato: () -> Unit = {},
 ) {
   val uiState = viewModel.uiState.collectAsState()
 
@@ -33,9 +35,7 @@ fun MetaScreen(
       modifier = Modifier
         .padding(innerPadding)
         .padding(
-          top = MangosAppTheme.sizing.md,
-          start = MangosAppTheme.sizing.sm,
-          end = MangosAppTheme.sizing.sm,
+          top = MangosAppTheme.sizing.md
         )
         .fillMaxSize(),
       verticalArrangement = Arrangement.SpaceBetween,
@@ -46,7 +46,9 @@ fun MetaScreen(
         onBack = {}
       )
       Column(
-        modifier = Modifier.fillMaxHeight(.85f),
+        modifier = Modifier.
+          fillMaxHeight(.85f)
+          .padding(horizontal = MangosAppTheme.sizing.sm),
         verticalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.md)
       ){
         MetaCard(
@@ -66,8 +68,13 @@ fun MetaScreen(
         )
       }
       Footer(
-        selected = 1,
-        onClick = {}
+        selected = 3,
+        onClick = { button ->
+          when (button) {
+            1 -> onChangeToExtrato()
+            2 -> onChangeToHome()
+          }
+        }
       )
     }
   }

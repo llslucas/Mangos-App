@@ -12,6 +12,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -37,7 +38,9 @@ import com.unifae.lucas.mangosapp.viewmodel.DashboardScreenViewModel
 
 @Composable
 fun DashboardScreen(
-  viewModel: DashboardScreenViewModel = viewModel()
+  viewModel: DashboardScreenViewModel = viewModel(),
+  onChangeToExtrato: () -> Unit = {},
+  onChangeToMetas: () -> Unit = {}
 ) {
   val uiState by viewModel.uiState.collectAsState()
 
@@ -196,7 +199,12 @@ fun DashboardScreen(
       }
       Footer(
         selected = 2,
-        onClick = {}
+        onClick = { button ->
+          when(button){
+            1 -> onChangeToExtrato()
+            3 -> onChangeToMetas()
+          }
+        }
       )
     }
   }
