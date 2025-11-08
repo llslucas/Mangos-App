@@ -1,11 +1,10 @@
-package com.unifae.lucas.mangosapp.ui.screen
+package com.unifae.lucas.mangosapp.view.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -15,23 +14,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import androidx.compose.ui.unit.dp
-import com.unifae.lucas.mangosapp.ui.component.CustomButton
-import com.unifae.lucas.mangosapp.ui.component.Footer
-import com.unifae.lucas.mangosapp.ui.component.FormInput
-import com.unifae.lucas.mangosapp.ui.component.ScreenHeader
-import com.unifae.lucas.mangosapp.ui.component.SubHeader
-import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
+import com.unifae.lucas.mangosapp.view.component.CustomButton
+import com.unifae.lucas.mangosapp.view.component.Footer
+import com.unifae.lucas.mangosapp.view.component.FormInput
+import com.unifae.lucas.mangosapp.view.component.ScreenHeader
+import com.unifae.lucas.mangosapp.view.component.SubHeader
+import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 
 @Composable
-fun CreateTransactionScreen(modifier: Modifier = Modifier) {
+fun CreateCategoryScreen(modifier: Modifier = Modifier) {
   var showValues by remember { mutableStateOf(true) }
-  val (type, setType) = remember {mutableStateOf("")}
-  val (data, setData) = remember {mutableStateOf("")}
-  val (valor, setValor) = remember {mutableStateOf("")}
-  val (bank, setBank) = remember {mutableStateOf("")}
-  val (category, setCategory) = remember {mutableStateOf("")}
-
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
     Column(
       modifier = Modifier
@@ -43,47 +35,30 @@ fun CreateTransactionScreen(modifier: Modifier = Modifier) {
       Column {
         ScreenHeader(
           modifier = Modifier.padding(start = MangosAppTheme.sizing.md),
-          title =  "Nova Transação",
+          title =  "Novo Banco",
           onBack = {}
         )
         SubHeader(
           modifier = Modifier.padding(MangosAppTheme.sizing.md),
-          title = "Registre suas receitas e despesas para acompanhar melhor suas finanças."
+          title = "Cadastre seus bancos para um melhor controle dos seus saldos."
         )
       }
+
       Column(
         modifier = Modifier.fillMaxHeight(.8f).padding(horizontal = MangosAppTheme.sizing.md),
         verticalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.md)
       ){
         FormInput(
-          title = "Tipo de transação",
-          placeholder = "Despesa ou Receita",
+          title = "Título",
+          placeholder = "Exemplo: Alimentação",
           value = "",
-          onChange = setType
+          onChange = {}
         )
         FormInput(
-          title = "Data",
-          placeholder = "Exemplo: 07/09/2025",
+          title = "Meta",
+          placeholder = "Exemplo: R$1000,00 ",
           value = "",
-          onChange = setData
-        )
-        FormInput(
-          title = "Valor",
-          placeholder = "Exemplo: R$33,33",
-          value = "",
-          onChange = setValor
-        )
-        FormInput(
-          title = "Banco",
-          placeholder = "Exemplo: Itaú",
-          value = "",
-          onChange = setBank
-        )
-        FormInput(
-          title = "Categoria",
-          placeholder = "Exemplo: Despesas Fixas",
-          value = "",
-          onChange = setCategory
+          onChange = {}
         )
       }
       CustomButton(
@@ -103,8 +78,8 @@ fun CreateTransactionScreen(modifier: Modifier = Modifier) {
 
 @PreviewLightDark
 @Composable
-private fun CreateTransactionScreenPreview() {
+private fun CreateCategoryScreenPreview() {
   MangosAppTheme {
-    CreateTransactionScreen()
+    CreateCategoryScreen()
   }
 }

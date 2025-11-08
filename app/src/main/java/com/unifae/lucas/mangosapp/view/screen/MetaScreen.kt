@@ -1,10 +1,9 @@
-package com.unifae.lucas.mangosapp.ui.screen
+package com.unifae.lucas.mangosapp.view.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -14,10 +13,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.unifae.lucas.mangosapp.ui.component.Footer
-import com.unifae.lucas.mangosapp.ui.component.MetaCard
-import com.unifae.lucas.mangosapp.ui.component.ScreenHeader
-import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
+import com.unifae.lucas.mangosapp.view.component.Footer
+import com.unifae.lucas.mangosapp.view.component.MetaCard
+import com.unifae.lucas.mangosapp.view.component.ScreenHeader
+import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 
 @Composable
 fun MetaScreen(modifier: Modifier = Modifier) {

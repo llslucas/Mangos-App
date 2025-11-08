@@ -1,4 +1,4 @@
-package com.unifae.lucas.mangosapp.ui.component
+package com.unifae.lucas.mangosapp.view.component
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
+import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 
 @Composable
 fun HeaderCard(modifier: Modifier = Modifier, content: @Composable () -> Unit) {

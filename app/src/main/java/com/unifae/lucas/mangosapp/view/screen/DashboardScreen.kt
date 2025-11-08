@@ -1,9 +1,8 @@
-package com.unifae.lucas.mangosapp.ui.screen
+package com.unifae.lucas.mangosapp.view.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -19,22 +18,21 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import com.unifae.lucas.mangosapp.ui.component.BankBalance
-import com.unifae.lucas.mangosapp.ui.component.BankType
-import com.unifae.lucas.mangosapp.ui.component.BodyCard
-import com.unifae.lucas.mangosapp.ui.component.CurrencySize
-import com.unifae.lucas.mangosapp.ui.component.CurrencyText
-import com.unifae.lucas.mangosapp.ui.component.ExpenseCategory
-import com.unifae.lucas.mangosapp.ui.component.ExpenseCategoryType
-import com.unifae.lucas.mangosapp.ui.component.Footer
-import com.unifae.lucas.mangosapp.ui.component.HeaderCard
-import com.unifae.lucas.mangosapp.ui.component.Result
-import com.unifae.lucas.mangosapp.ui.component.ShowValuesIcon
-import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
-import com.unifae.lucas.mangosapp.ui.theme.Typography
+import com.unifae.lucas.mangosapp.view.component.BankBalance
+import com.unifae.lucas.mangosapp.view.component.BankType
+import com.unifae.lucas.mangosapp.view.component.BodyCard
+import com.unifae.lucas.mangosapp.view.component.CurrencySize
+import com.unifae.lucas.mangosapp.view.component.CurrencyText
+import com.unifae.lucas.mangosapp.view.component.ExpenseCategory
+import com.unifae.lucas.mangosapp.view.component.ExpenseCategoryType
+import com.unifae.lucas.mangosapp.view.component.Footer
+import com.unifae.lucas.mangosapp.view.component.HeaderCard
+import com.unifae.lucas.mangosapp.view.component.Result
+import com.unifae.lucas.mangosapp.view.component.ShowValuesIcon
+import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
+import com.unifae.lucas.mangosapp.view.theme.Typography
 
 @Composable
 fun DashboardScreen() {

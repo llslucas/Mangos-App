@@ -1,4 +1,4 @@
-package com.unifae.lucas.mangosapp.ui.theme
+package com.unifae.lucas.mangosapp.view.theme
 
 import androidx.compose.ui.graphics.Color
 

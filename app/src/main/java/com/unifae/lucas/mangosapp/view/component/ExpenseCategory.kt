@@ -1,4 +1,4 @@
-package com.unifae.lucas.mangosapp.ui.component
+package com.unifae.lucas.mangosapp.view.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -20,10 +20,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import com.unifae.lucas.mangosapp.ui.theme.DarkTextPrimary
-import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
-import com.unifae.lucas.mangosapp.ui.theme.Primary
-import com.unifae.lucas.mangosapp.ui.theme.Typography
+import com.unifae.lucas.mangosapp.view.theme.DarkTextPrimary
+import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
+import com.unifae.lucas.mangosapp.view.theme.Primary
+import com.unifae.lucas.mangosapp.view.theme.Typography
 
 enum class ExpenseCategoryType(val icon: ImageVector) {
   BANK(Icons.Default.AccountBalance),

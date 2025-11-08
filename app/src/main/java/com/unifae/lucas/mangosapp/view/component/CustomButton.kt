@@ -1,4 +1,4 @@
-package com.unifae.lucas.mangosapp.ui.component
+package com.unifae.lucas.mangosapp.view.component
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
@@ -8,12 +8,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
-import com.unifae.lucas.mangosapp.ui.theme.Primary
-import com.unifae.lucas.mangosapp.ui.theme.Typography
+import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
+import com.unifae.lucas.mangosapp.view.theme.Primary
+import com.unifae.lucas.mangosapp.view.theme.Typography
 
 @Composable
 fun CustomButton(

@@ -1,4 +1,4 @@
-package com.unifae.lucas.mangosapp.ui.component
+package com.unifae.lucas.mangosapp.view.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,9 +15,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
-import com.unifae.lucas.mangosapp.ui.theme.Primary
-import com.unifae.lucas.mangosapp.ui.theme.Typography
+import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
+import com.unifae.lucas.mangosapp.view.theme.Primary
+import com.unifae.lucas.mangosapp.view.theme.Typography
 
 @Composable
 fun FormInput(

@@ -1,4 +1,4 @@
-package com.unifae.lucas.mangosapp.ui.component
+package com.unifae.lucas.mangosapp.view.component
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
@@ -9,10 +9,8 @@ import androidx.compose.material3.IconButtonDefaults.iconButtonColors
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.unifae.lucas.mangosapp.ui.theme.DarkTextPrimary
-import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
+import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 
 @Composable
 fun ShowValuesIcon(modifier: Modifier = Modifier, showValues: Boolean, onClick:() -> Unit) {

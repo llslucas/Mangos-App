@@ -1,4 +1,4 @@
-package com.unifae.lucas.mangosapp.ui.component
+package com.unifae.lucas.mangosapp.view.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,8 +12,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
-import com.unifae.lucas.mangosapp.ui.theme.Typography
+import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
+import com.unifae.lucas.mangosapp.view.theme.Typography
 
 @Composable
 fun BodyCard(modifier: Modifier = Modifier, title: String?, content: @Composable () -> Unit) {

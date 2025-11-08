@@ -1,4 +1,4 @@
-package com.unifae.lucas.mangosapp.ui.screen
+package com.unifae.lucas.mangosapp.view.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,16 +14,22 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
-import com.unifae.lucas.mangosapp.ui.component.CustomButton
-import com.unifae.lucas.mangosapp.ui.component.Footer
-import com.unifae.lucas.mangosapp.ui.component.FormInput
-import com.unifae.lucas.mangosapp.ui.component.ScreenHeader
-import com.unifae.lucas.mangosapp.ui.component.SubHeader
-import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
+import com.unifae.lucas.mangosapp.view.component.CustomButton
+import com.unifae.lucas.mangosapp.view.component.Footer
+import com.unifae.lucas.mangosapp.view.component.FormInput
+import com.unifae.lucas.mangosapp.view.component.ScreenHeader
+import com.unifae.lucas.mangosapp.view.component.SubHeader
+import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 
 @Composable
-fun CreateBankScreen(modifier: Modifier = Modifier) {
+fun CreateTransactionScreen(modifier: Modifier = Modifier) {
   var showValues by remember { mutableStateOf(true) }
+  val (type, setType) = remember {mutableStateOf("")}
+  val (data, setData) = remember {mutableStateOf("")}
+  val (valor, setValor) = remember {mutableStateOf("")}
+  val (bank, setBank) = remember {mutableStateOf("")}
+  val (category, setCategory) = remember {mutableStateOf("")}
+
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
     Column(
       modifier = Modifier
@@ -35,42 +41,47 @@ fun CreateBankScreen(modifier: Modifier = Modifier) {
       Column {
         ScreenHeader(
           modifier = Modifier.padding(start = MangosAppTheme.sizing.md),
-          title =  "Novo Banco",
+          title =  "Nova Transação",
           onBack = {}
         )
         SubHeader(
           modifier = Modifier.padding(MangosAppTheme.sizing.md),
-          title = "Cadastre seus bancos para um melhor controle dos seus saldos."
+          title = "Registre suas receitas e despesas para acompanhar melhor suas finanças."
         )
       }
-
       Column(
         modifier = Modifier.fillMaxHeight(.8f).padding(horizontal = MangosAppTheme.sizing.md),
         verticalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.md)
       ){
         FormInput(
+          title = "Tipo de transação",
+          placeholder = "Despesa ou Receita",
+          value = "",
+          onChange = setType
+        )
+        FormInput(
+          title = "Data",
+          placeholder = "Exemplo: 07/09/2025",
+          value = "",
+          onChange = setData
+        )
+        FormInput(
+          title = "Valor",
+          placeholder = "Exemplo: R$33,33",
+          value = "",
+          onChange = setValor
+        )
+        FormInput(
           title = "Banco",
-          placeholder = "Exemplo: Santander",
+          placeholder = "Exemplo: Itaú",
           value = "",
-          onChange = {}
+          onChange = setBank
         )
         FormInput(
-          title = "Conta",
-          placeholder = "Exemplo: 12345-6 ",
+          title = "Categoria",
+          placeholder = "Exemplo: Despesas Fixas",
           value = "",
-          onChange = {}
-        )
-        FormInput(
-          title = "Agencia",
-          placeholder = "Exemplo: 0000",
-          value = "",
-          onChange = {}
-        )
-        FormInput(
-          title = "Titular",
-          placeholder = "Exemplo: Fulano",
-          value = "",
-          onChange = {}
+          onChange = setCategory
         )
       }
       CustomButton(
@@ -90,8 +101,8 @@ fun CreateBankScreen(modifier: Modifier = Modifier) {
 
 @PreviewLightDark
 @Composable
-private fun CreateBankScreenPreview() {
+private fun CreateTransactionScreenPreview() {
   MangosAppTheme {
-    CreateBankScreen()
+    CreateTransactionScreen()
   }
 }

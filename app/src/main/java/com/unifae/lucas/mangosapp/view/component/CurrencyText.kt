@@ -1,4 +1,4 @@
-package com.unifae.lucas.mangosapp.ui.component
+package com.unifae.lucas.mangosapp.view.component
 
 import android.annotation.SuppressLint
 import androidx.compose.material3.Text
@@ -6,10 +6,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
-import com.unifae.lucas.mangosapp.ui.theme.MangosAppTheme
-import com.unifae.lucas.mangosapp.ui.theme.Primary
-import com.unifae.lucas.mangosapp.ui.theme.Secondary
-import com.unifae.lucas.mangosapp.ui.theme.Typography
+import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
+import com.unifae.lucas.mangosapp.view.theme.Primary
+import com.unifae.lucas.mangosapp.view.theme.Secondary
+import com.unifae.lucas.mangosapp.view.theme.Typography
 import kotlin.math.absoluteValue
 
 enum class CurrencySize(val style: TextStyle) {

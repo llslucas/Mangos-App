@@ -1,4 +1,4 @@
-package com.unifae.lucas.mangosapp.ui.theme
+package com.unifae.lucas.mangosapp.view.theme
 
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.unit.Dp
