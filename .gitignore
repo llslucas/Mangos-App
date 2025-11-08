@@ -12,6 +12,7 @@
 bin/
 build/
 .gradle/
+.kotlin/
 .idea/
 captures/
 .cxx/
