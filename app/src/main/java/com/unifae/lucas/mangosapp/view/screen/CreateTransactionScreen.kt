@@ -8,27 +8,29 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.unifae.lucas.mangosapp.view.component.CustomButton
 import com.unifae.lucas.mangosapp.view.component.Footer
 import com.unifae.lucas.mangosapp.view.component.FormInput
 import com.unifae.lucas.mangosapp.view.component.ScreenHeader
 import com.unifae.lucas.mangosapp.view.component.SubHeader
 import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
+import com.unifae.lucas.mangosapp.viewmodel.CreateTransactionEventForm
+import com.unifae.lucas.mangosapp.viewmodel.CreateTransactionViewModel
 
 @Composable
-fun CreateTransactionScreen(modifier: Modifier = Modifier) {
-  var showValues by remember { mutableStateOf(true) }
-  val (type, setType) = remember {mutableStateOf("")}
-  val (data, setData) = remember {mutableStateOf("")}
-  val (valor, setValor) = remember {mutableStateOf("")}
-  val (bank, setBank) = remember {mutableStateOf("")}
-  val (category, setCategory) = remember {mutableStateOf("")}
+fun CreateTransactionScreen(
+  modifier: Modifier = Modifier,
+  viewModel: CreateTransactionViewModel = viewModel()
+) {
+  val uiState by viewModel.uiState.collectAsState()
 
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
     Column(
@@ -41,7 +43,7 @@ fun CreateTransactionScreen(modifier: Modifier = Modifier) {
       Column {
         ScreenHeader(
           modifier = Modifier.padding(start = MangosAppTheme.sizing.md),
-          title =  "Nova Transação",
+          title = "Nova Transação",
           onBack = {}
         )
         SubHeader(
@@ -50,46 +52,60 @@ fun CreateTransactionScreen(modifier: Modifier = Modifier) {
         )
       }
       Column(
-        modifier = Modifier.fillMaxHeight(.8f).padding(horizontal = MangosAppTheme.sizing.md),
+        modifier = Modifier
+          .fillMaxHeight(.8f)
+          .padding(horizontal = MangosAppTheme.sizing.md),
         verticalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.md)
-      ){
+      ) {
         FormInput(
           title = "Tipo de transação",
           placeholder = "Despesa ou Receita",
-          value = "",
-          onChange = setType
+          value = uiState.type,
+          onChange = { newValue ->
+            viewModel.onEvent(CreateTransactionEventForm.TypeChanged(newValue))
+          }
         )
         FormInput(
           title = "Data",
           placeholder = "Exemplo: 07/09/2025",
-          value = "",
-          onChange = setData
+          value = uiState.date,
+          onChange = { newValue ->
+            viewModel.onEvent(CreateTransactionEventForm.DateChanged(newValue))
+          }
         )
         FormInput(
           title = "Valor",
           placeholder = "Exemplo: R$33,33",
-          value = "",
-          onChange = setValor
+          value = uiState.value,
+          onChange = { newValue ->
+            viewModel.onEvent(CreateTransactionEventForm.ValueChanged(newValue))
+          }
         )
         FormInput(
           title = "Banco",
           placeholder = "Exemplo: Itaú",
-          value = "",
-          onChange = setBank
+          value = uiState.bank,
+          onChange = { newValue ->
+            viewModel.onEvent(CreateTransactionEventForm.BankChanged(newValue))
+          }
         )
         FormInput(
           title = "Categoria",
           placeholder = "Exemplo: Despesas Fixas",
-          value = "",
-          onChange = setCategory
+          value = uiState.category,
+          onChange = { newValue ->
+            viewModel.onEvent(CreateTransactionEventForm.CategoryChanged(newValue))
+          }
         )
       }
       CustomButton(
         modifier = Modifier
           .fillMaxWidth()
-          .padding(MangosAppTheme.sizing.md)
-        ,text = "Salvar",
-        onClick = {},
+          .padding(MangosAppTheme.sizing.md),
+        text = "Salvar",
+        onClick = {
+          viewModel.onEvent(CreateTransactionEventForm.SaveButtonClicked)
+        },
       )
       Footer(
         selected = 1,

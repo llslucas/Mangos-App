@@ -8,22 +8,31 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.unifae.lucas.mangosapp.view.component.CustomButton
 import com.unifae.lucas.mangosapp.view.component.Footer
 import com.unifae.lucas.mangosapp.view.component.FormInput
 import com.unifae.lucas.mangosapp.view.component.ScreenHeader
 import com.unifae.lucas.mangosapp.view.component.SubHeader
 import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
+import com.unifae.lucas.mangosapp.viewmodel.CreateBankViewModel
+import com.unifae.lucas.mangosapp.viewmodel.CreateCategoryEventForm
+import com.unifae.lucas.mangosapp.viewmodel.CreateCategoryViewModel
 
 @Composable
-fun CreateCategoryScreen(modifier: Modifier = Modifier) {
-  var showValues by remember { mutableStateOf(true) }
+fun CreateCategoryScreen(
+  modifier: Modifier = Modifier,
+  viewModel: CreateCategoryViewModel = viewModel()
+) {
+  val uiState by viewModel.uiState.collectAsState()
+
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
     Column(
       modifier = Modifier
@@ -51,22 +60,30 @@ fun CreateCategoryScreen(modifier: Modifier = Modifier) {
         FormInput(
           title = "Título",
           placeholder = "Exemplo: Alimentação",
-          value = "",
-          onChange = {}
+          value = uiState.categoryName,
+          onChange = {newValue ->
+            viewModel.onEvent(CreateCategoryEventForm.CategoryNameChanged(newValue))
+          }
         )
+
         FormInput(
           title = "Meta",
           placeholder = "Exemplo: R$1000,00 ",
-          value = "",
-          onChange = {}
+          value = uiState.goalValue,
+          onChange = {newValue ->
+            viewModel.onEvent(CreateCategoryEventForm.GoalValueChanged(newValue))
+          }
         )
       }
+
       CustomButton(
         modifier = Modifier
           .fillMaxWidth()
           .padding(MangosAppTheme.sizing.md)
         ,text = "Salvar",
-        onClick = {},
+        onClick = {
+          viewModel.onEvent(CreateCategoryEventForm.SaveButtonClicked)
+        },
       )
       Footer(
         selected = 1,
