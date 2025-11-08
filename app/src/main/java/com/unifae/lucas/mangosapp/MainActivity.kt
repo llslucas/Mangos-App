@@ -7,7 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import com.unifae.lucas.mangosapp.view.screen.CreateBankScreen
 import com.unifae.lucas.mangosapp.view.screen.CreateCategoryScreen
 import com.unifae.lucas.mangosapp.view.screen.CreateTransactionScreen
+import com.unifae.lucas.mangosapp.view.screen.DashboardScreen
 import com.unifae.lucas.mangosapp.view.screen.ExtratoScreen
+import com.unifae.lucas.mangosapp.view.screen.MetaScreen
 import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -16,7 +18,7 @@ class MainActivity : ComponentActivity() {
     enableEdgeToEdge()
     setContent {
       MangosAppTheme {
-        CreateTransactionScreen()
+        MetaScreen()
       }
     }
   }

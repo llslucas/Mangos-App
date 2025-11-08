@@ -11,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -19,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.unifae.lucas.mangosapp.view.component.BodyCard
 import com.unifae.lucas.mangosapp.view.component.Footer
 import com.unifae.lucas.mangosapp.view.component.Result
@@ -27,10 +29,16 @@ import com.unifae.lucas.mangosapp.view.component.SearchBar
 import com.unifae.lucas.mangosapp.view.component.Transaction
 import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.view.theme.Typography
+import com.unifae.lucas.mangosapp.viewmodel.CreateTransactionViewModel
+import com.unifae.lucas.mangosapp.viewmodel.ExtratoScreenEvent
+import com.unifae.lucas.mangosapp.viewmodel.ExtratoScreenViewModel
 
 @Composable
-fun ExtratoScreen() {
-  var showValues by remember { mutableStateOf(true) }
+fun ExtratoScreen(
+  viewModel: ExtratoScreenViewModel = viewModel()
+) {
+  val uiState by viewModel.uiState.collectAsState()
+
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
     Column(
       modifier = Modifier
@@ -56,11 +64,11 @@ fun ExtratoScreen() {
         ){
           Result(
             value = 3333.33f,
-            showValues = showValues,
+            showValues = uiState.showValues,
           )
           Result(
             value = -3333.33f,
-            showValues = showValues,
+            showValues = uiState.showValues,
           )
         }
       }
@@ -68,7 +76,10 @@ fun ExtratoScreen() {
       SearchBar(
         modifier = Modifier.padding(horizontal = MangosAppTheme.sizing.sm),
         placeholder = "Buscar",
-        onChange = {}
+        value = uiState.searchValue,
+        onChange = { newValue ->
+          viewModel.onEvent(ExtratoScreenEvent.SearchValueChanged(newValue))
+        }
       )
 
       Column(

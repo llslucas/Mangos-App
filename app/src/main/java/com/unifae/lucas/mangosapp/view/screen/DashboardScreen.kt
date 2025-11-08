@@ -12,14 +12,13 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.unifae.lucas.mangosapp.view.component.BankBalance
 import com.unifae.lucas.mangosapp.view.component.BankType
 import com.unifae.lucas.mangosapp.view.component.BodyCard
@@ -33,10 +32,14 @@ import com.unifae.lucas.mangosapp.view.component.Result
 import com.unifae.lucas.mangosapp.view.component.ShowValuesIcon
 import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.view.theme.Typography
+import com.unifae.lucas.mangosapp.viewmodel.DashboardScreenEvent
+import com.unifae.lucas.mangosapp.viewmodel.DashboardScreenViewModel
 
 @Composable
-fun DashboardScreen() {
-  var showValues by remember { mutableStateOf(true) }
+fun DashboardScreen(
+  viewModel: DashboardScreenViewModel = viewModel()
+) {
+  val uiState by viewModel.uiState.collectAsState()
 
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
     Column(
@@ -78,13 +81,13 @@ fun DashboardScreen() {
             ) {
               CurrencyText(
                 value = 3333.33f,
-                showValues = showValues,
+                showValues = uiState.showValues,
                 size = CurrencySize.LARGE
               )
               ShowValuesIcon(
-                showValues = showValues,
+                showValues = uiState.showValues,
                 onClick = {
-                  showValues = !showValues
+                  viewModel.onEvent(DashboardScreenEvent.ShowValuesChanged)
                 }
               )
             }
@@ -95,12 +98,12 @@ fun DashboardScreen() {
           ) {
             Result(
               value = 1111.11f,
-              showValues = showValues,
+              showValues = uiState.showValues,
             )
 
             Result(
               value = -1111.11f,
-              showValues = showValues,
+              showValues = uiState.showValues,
             )
           }
         }
@@ -121,19 +124,19 @@ fun DashboardScreen() {
               type = ExpenseCategoryType.BANK,
               name = "Financiamento",
               value = 150.00f,
-              showValues = showValues
+              showValues = uiState.showValues
             )
             ExpenseCategory(
               type = ExpenseCategoryType.FOOD,
               name = "Alimentação",
               value = 150.00f,
-              showValues = showValues
+              showValues = uiState.showValues
             )
             ExpenseCategory(
               type = ExpenseCategoryType.HEALTH,
               name = "Saúde",
               value = 150.00f,
-              showValues = showValues
+              showValues = uiState.showValues
             )
           }
           Column(
@@ -143,19 +146,19 @@ fun DashboardScreen() {
               type = ExpenseCategoryType.BANK,
               name = "Financiamento",
               value = 150.00f,
-              showValues = showValues
+              showValues = uiState.showValues
             )
             ExpenseCategory(
               type = ExpenseCategoryType.FOOD,
               name = "Alimentação",
               value = 150.00f,
-              showValues = showValues
+              showValues = uiState.showValues
             )
             ExpenseCategory(
               type = ExpenseCategoryType.HEALTH,
               name = "Saúde",
               value = 150.00f,
-              showValues = showValues
+              showValues = uiState.showValues
             )
           }
         }
@@ -175,19 +178,19 @@ fun DashboardScreen() {
             name = "Nubank",
             bankType = BankType.NUBANK,
             value = 333.33f,
-            showValues = showValues
+            showValues = uiState.showValues
           )
           BankBalance(
             name = "Itaú",
             bankType = BankType.ITAU,
             value = 333.33f,
-            showValues = showValues
+            showValues = uiState.showValues
           )
           BankBalance(
             name = "Santander",
             bankType = BankType.SANTANDER,
             value = 333.33f,
-            showValues = showValues
+            showValues = uiState.showValues
           )
         }
       }

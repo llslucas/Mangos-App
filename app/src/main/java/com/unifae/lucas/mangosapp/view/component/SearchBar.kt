@@ -21,16 +21,12 @@ import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.view.theme.Typography
 
 @Composable
-fun SearchBar(modifier: Modifier = Modifier, placeholder: String, onChange: (value: String) -> Unit) {
-  var value by remember { mutableStateOf("") }
+fun SearchBar(modifier: Modifier = Modifier, placeholder: String, value: String, onChange: (value: String) -> Unit) {
   OutlinedTextField(
     shape = CircleShape,
     modifier = modifier.fillMaxWidth().background(color = MaterialTheme.colorScheme.surface, shape = CircleShape),
     value = value,
-    onValueChange = { text ->
-      value = text
-      onChange(value)
-    },
+    onValueChange = onChange,
     leadingIcon = {
       Icon(
         modifier = Modifier.padding(start = MangosAppTheme.sizing.md),
@@ -56,6 +52,7 @@ private fun SearchBarPreview() {
   MangosAppTheme {
     SearchBar(
       placeholder = "Buscar",
+      value = "",
       onChange = {}
     )
   }
