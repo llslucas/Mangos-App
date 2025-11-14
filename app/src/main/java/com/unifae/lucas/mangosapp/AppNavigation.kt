@@ -1,7 +1,6 @@
 package com.unifae.lucas.mangosapp
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -19,19 +18,25 @@ fun AppNavigation() {
   NavHost(
     navController = navController,
     startDestination = AppRoutes.DASHBOARD_SCREEN
-  ){
-    composable(route = AppRoutes.DASHBOARD_SCREEN){
+  ) {
+    composable(route = AppRoutes.DASHBOARD_SCREEN) {
       DashboardScreen(
         onChangeToExtrato = {
           navController.navigate(AppRoutes.EXTRATO_SCREEN)
         },
         onChangeToMetas = {
           navController.navigate(AppRoutes.META_SCREEN)
+        },
+        onChangeToNewBank = {
+          navController.navigate(AppRoutes.CREATE_BANK_SCREEN)
+        },
+        onChangeToNewTransaction = {
+          navController.navigate(AppRoutes.CREATE_TRANSACTION_SCREEN)
         }
       )
     }
 
-    composable(route = AppRoutes.EXTRATO_SCREEN){
+    composable(route = AppRoutes.EXTRATO_SCREEN) {
       ExtratoScreen(
         onChangeToHome = {
           navController.navigate(AppRoutes.DASHBOARD_SCREEN)
@@ -42,27 +47,60 @@ fun AppNavigation() {
       )
     }
 
-    composable(route = AppRoutes.META_SCREEN){
+    composable(route = AppRoutes.META_SCREEN) {
       MetaScreen(
         onChangeToHome = {
           navController.navigate(AppRoutes.DASHBOARD_SCREEN)
         },
         onChangeToExtrato = {
           navController.navigate(AppRoutes.EXTRATO_SCREEN)
+        },
+        onChangeToNewCategory = {
+          navController.navigate(AppRoutes.CREATE_CATEGORY_SCREEN)
         }
       )
     }
 
-    composable(route = AppRoutes.CREATE_BANK_SCREEN){
-      CreateBankScreen()
+    composable(route = AppRoutes.CREATE_BANK_SCREEN) {
+      CreateBankScreen(
+        onChangeToExtrato = {
+          navController.navigate(AppRoutes.EXTRATO_SCREEN)
+        },
+        onChangeToHome = {
+          navController.navigate(AppRoutes.DASHBOARD_SCREEN)
+        },
+        onChangeToMetas = {
+          navController.navigate(AppRoutes.META_SCREEN)
+        },
+      )
     }
 
-    composable(route = AppRoutes.CREATE_CATEGORY_SCREEN){
-      CreateCategoryScreen()
+    composable(route = AppRoutes.CREATE_CATEGORY_SCREEN) {
+      CreateCategoryScreen(
+        onChangeToExtrato = {
+          navController.navigate(AppRoutes.EXTRATO_SCREEN)
+        },
+        onChangeToHome = {
+          navController.navigate(AppRoutes.DASHBOARD_SCREEN)
+        },
+        onChangeToMetas = {
+          navController.navigate(AppRoutes.META_SCREEN)
+        },
+      )
     }
 
-    composable(route = AppRoutes.CREATE_TRANSACTION_SCREEN){
-      CreateTransactionScreen()
+    composable(route = AppRoutes.CREATE_TRANSACTION_SCREEN) {
+      CreateTransactionScreen(
+        onChangeToExtrato = {
+          navController.navigate(AppRoutes.EXTRATO_SCREEN)
+        },
+        onChangeToHome = {
+          navController.navigate(AppRoutes.DASHBOARD_SCREEN)
+        },
+        onChangeToMetas = {
+          navController.navigate(AppRoutes.META_SCREEN)
+        },
+      )
     }
   }
 }

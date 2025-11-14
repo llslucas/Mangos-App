@@ -28,7 +28,10 @@ import com.unifae.lucas.mangosapp.viewmodel.CreateTransactionViewModel
 @Composable
 fun CreateTransactionScreen(
   modifier: Modifier = Modifier,
-  viewModel: CreateTransactionViewModel = viewModel()
+  viewModel: CreateTransactionViewModel = viewModel(),
+  onChangeToExtrato: () -> Unit = {},
+  onChangeToHome: () -> Unit = {},
+  onChangeToMetas: () -> Unit = {},
 ) {
   val uiState by viewModel.uiState.collectAsState()
 
@@ -44,7 +47,7 @@ fun CreateTransactionScreen(
         ScreenHeader(
           modifier = Modifier.padding(start = MangosAppTheme.sizing.md),
           title = "Nova Transação",
-          onBack = {}
+          onBack = {onChangeToHome()}
         )
         SubHeader(
           modifier = Modifier.padding(MangosAppTheme.sizing.md),
@@ -108,8 +111,14 @@ fun CreateTransactionScreen(
         },
       )
       Footer(
-        selected = 1,
-        onClick = {}
+        selected = 0,
+        onClick = { button ->
+          when(button){
+            1 -> onChangeToExtrato()
+            2 -> onChangeToHome()
+            3 -> onChangeToMetas()
+          }
+        }
       )
     }
   }

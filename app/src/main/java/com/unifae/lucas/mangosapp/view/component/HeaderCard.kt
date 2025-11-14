@@ -16,8 +16,7 @@ import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 fun HeaderCard(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
   Card(
     modifier = modifier
-      .fillMaxWidth()
-      .height(210.dp),
+      .fillMaxWidth(),
     shape = RoundedCornerShape(
       topStartPercent = 0,
       topEndPercent = 0,

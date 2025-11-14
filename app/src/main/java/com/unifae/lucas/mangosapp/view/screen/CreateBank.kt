@@ -10,25 +10,25 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.unifae.lucas.mangosapp.view.component.CustomButton
 import com.unifae.lucas.mangosapp.view.component.Footer
 import com.unifae.lucas.mangosapp.view.component.FormInput
 import com.unifae.lucas.mangosapp.view.component.ScreenHeader
 import com.unifae.lucas.mangosapp.view.component.SubHeader
 import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
-import com.unifae.lucas.mangosapp.viewmodel.CreateBankViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.unifae.lucas.mangosapp.viewmodel.CreateBankEventForm
+import com.unifae.lucas.mangosapp.viewmodel.CreateBankViewModel
 
 @Composable
 fun CreateBankScreen(
   modifier: Modifier = Modifier,
-  viewModel: CreateBankViewModel = viewModel()
+  viewModel: CreateBankViewModel = hiltViewModel(),
+  onChangeToExtrato: () -> Unit = {},
+  onChangeToHome: () -> Unit = {},
+  onChangeToMetas: () -> Unit = {},
 ) {
   val uiState by viewModel.uiState.collectAsState()
 
@@ -44,7 +44,9 @@ fun CreateBankScreen(
         ScreenHeader(
           modifier = Modifier.padding(start = MangosAppTheme.sizing.md),
           title =  "Novo Banco",
-          onBack = {}
+          onBack = {
+            onChangeToHome()
+          }
         )
         SubHeader(
           modifier = Modifier.padding(MangosAppTheme.sizing.md),
@@ -99,8 +101,14 @@ fun CreateBankScreen(
         },
       )
       Footer(
-        selected = 1,
-        onClick = {}
+        selected = 0,
+        onClick = { button ->
+          when(button){
+            1 -> onChangeToExtrato()
+            2 -> onChangeToHome()
+            3 -> onChangeToMetas()
+          }
+        }
       )
     }
   }

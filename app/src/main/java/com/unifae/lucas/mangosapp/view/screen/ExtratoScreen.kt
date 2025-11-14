@@ -52,7 +52,7 @@ fun ExtratoScreen(
       ScreenHeader(
         modifier = Modifier.padding(start = MangosAppTheme.sizing.md),
         title =  "Extrato",
-        onBack = {}
+        onBack = {onChangeToHome()}
       )
       BodyCard(
         modifier = Modifier.height(120.dp).padding(horizontal = MangosAppTheme.sizing.sm),

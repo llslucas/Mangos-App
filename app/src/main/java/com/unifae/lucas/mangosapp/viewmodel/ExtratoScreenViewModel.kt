@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.update
 
 data class ExtratoScreenState(
   val searchValue: String = "",
-  val showValues: Boolean = false,
+  val showValues: Boolean = true,
   val isLoading: Boolean = false,
 )
 

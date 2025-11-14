@@ -26,15 +26,8 @@ import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.view.theme.Primary
 import com.unifae.lucas.mangosapp.view.theme.Typography
 
-enum class BankType(val icon: Int) {
-  ITAU(R.drawable.itau_unibanco),
-  NUBANK(R.drawable.nubank),
-  SANTANDER(R.drawable.santander_brasil),
-  BB(R.drawable.banco_do_brasil)
-}
-
 @Composable
-fun BankBalance(modifier: Modifier = Modifier, name: String, value: Float, bankType: BankType, showValues: Boolean, onClick: () -> Unit) {
+fun NewBank(modifier: Modifier = Modifier, onClick: () -> Unit) {
   Row(
     modifier = modifier.fillMaxWidth(),
     verticalAlignment = Alignment.CenterVertically,
@@ -44,28 +37,14 @@ fun BankBalance(modifier: Modifier = Modifier, name: String, value: Float, bankT
       verticalAlignment = Alignment.CenterVertically,
       horizontalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.sm)
     ) {
-      Icon(
-        modifier = Modifier
-          .size(42.dp)
-          .padding(MangosAppTheme.sizing.xs)
-          .clip(shape= CircleShape),
-        painter= painterResource(bankType.icon),
-        contentDescription = null,
-        tint= Color.Unspecified
-      )
       Column {
         Text(
-          text = name,
+          text = "Criar novo banco",
           style = Typography.headlineMedium,
           color = MaterialTheme.colorScheme.onBackground
         )
-        CurrencyText(
-          value = value,
-          showValues = showValues,
-          size = CurrencySize.MEDIUM
-        )
       }
-  }
+    }
     IconButton(
       onClick = onClick,
     ) {
@@ -83,11 +62,7 @@ fun BankBalance(modifier: Modifier = Modifier, name: String, value: Float, bankT
 @Composable
 private fun BankBalancePreview() {
   MangosAppTheme {
-    BankBalance(
-      value= 3333.33f,
-      bankType = BankType.NUBANK,
-      name= "Nubank",
-      showValues = true,
+    NewBank(
       onClick = {}
     )
   }

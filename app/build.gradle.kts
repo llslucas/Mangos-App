@@ -2,6 +2,8 @@ plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.android)
   alias(libs.plugins.kotlin.compose)
+  id("com.google.dagger.hilt.android")
+  id("com.google.devtools.ksp")
 }
 
 android {
@@ -37,7 +39,6 @@ android {
 }
 
 dependencies {
-
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.lifecycle.runtime.ktx)
   implementation(libs.androidx.activity.compose)
@@ -50,6 +51,13 @@ dependencies {
   implementation(libs.androidx.material.icons.extended)
   implementation(libs.androidx.lifecycle.viewmodel.compose)
   implementation(libs.androidx.navigation.compose)
+  implementation(libs.room.runtime)
+  annotationProcessor(libs.androidx.room.room.compiler)
+  ksp(libs.androidx.room.room.compiler)
+  ksp(libs.hilt.compiler)
+  implementation(libs.room.ktx)
+  implementation(libs.hilt.android)
+  implementation(libs.androidx.hilt.navigation.compose)
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso.core)

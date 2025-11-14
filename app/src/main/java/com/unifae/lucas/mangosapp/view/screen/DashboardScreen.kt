@@ -12,7 +12,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -29,6 +28,7 @@ import com.unifae.lucas.mangosapp.view.component.ExpenseCategory
 import com.unifae.lucas.mangosapp.view.component.ExpenseCategoryType
 import com.unifae.lucas.mangosapp.view.component.Footer
 import com.unifae.lucas.mangosapp.view.component.HeaderCard
+import com.unifae.lucas.mangosapp.view.component.NewBank
 import com.unifae.lucas.mangosapp.view.component.Result
 import com.unifae.lucas.mangosapp.view.component.ShowValuesIcon
 import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
@@ -40,7 +40,9 @@ import com.unifae.lucas.mangosapp.viewmodel.DashboardScreenViewModel
 fun DashboardScreen(
   viewModel: DashboardScreenViewModel = viewModel(),
   onChangeToExtrato: () -> Unit = {},
-  onChangeToMetas: () -> Unit = {}
+  onChangeToMetas: () -> Unit = {},
+  onChangeToNewBank: () -> Unit = {},
+  onChangeToNewTransaction: () -> Unit = {},
 ) {
   val uiState by viewModel.uiState.collectAsState()
 
@@ -52,6 +54,7 @@ fun DashboardScreen(
       verticalArrangement = Arrangement.SpaceBetween
     ) {
       HeaderCard(
+        modifier = Modifier.height(210.dp)
       ) {
         Column(
           modifier = Modifier.fillMaxSize(),
@@ -83,7 +86,7 @@ fun DashboardScreen(
               verticalAlignment = Alignment.CenterVertically
             ) {
               CurrencyText(
-                value = 3333.33f,
+                value = uiState.transactions?.getBalance() ?: 0f,
                 showValues = uiState.showValues,
                 size = CurrencySize.LARGE
               )
@@ -100,12 +103,12 @@ fun DashboardScreen(
             horizontalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.xl)
           ) {
             Result(
-              value = 1111.11f,
+              value = uiState.transactions?.getIncome() ?: 0f,
               showValues = uiState.showValues,
             )
 
             Result(
-              value = -1111.11f,
+              value = uiState.transactions?.getExpenses() ?: 0f,
               showValues = uiState.showValues,
             )
           }
@@ -181,19 +184,18 @@ fun DashboardScreen(
             name = "Nubank",
             bankType = BankType.NUBANK,
             value = 333.33f,
-            showValues = uiState.showValues
+            showValues = uiState.showValues,
+            onClick = {onChangeToNewTransaction()}
           )
           BankBalance(
             name = "Itaú",
             bankType = BankType.ITAU,
             value = 333.33f,
-            showValues = uiState.showValues
+            showValues = uiState.showValues,
+            onClick = {onChangeToNewTransaction()}
           )
-          BankBalance(
-            name = "Santander",
-            bankType = BankType.SANTANDER,
-            value = 333.33f,
-            showValues = uiState.showValues
+          NewBank(
+            onClick = {onChangeToNewBank()}
           )
         }
       }

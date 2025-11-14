@@ -11,7 +11,9 @@ import com.unifae.lucas.mangosapp.view.screen.DashboardScreen
 import com.unifae.lucas.mangosapp.view.screen.ExtratoScreen
 import com.unifae.lucas.mangosapp.view.screen.MetaScreen
 import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

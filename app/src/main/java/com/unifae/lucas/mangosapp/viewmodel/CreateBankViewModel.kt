@@ -6,6 +6,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import android.util.Log
+import androidx.lifecycle.viewModelScope
+import com.unifae.lucas.mangosapp.model.core.Bank
+import com.unifae.lucas.mangosapp.persistence.repository.BankRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 data class CreateBankState(
   val bankName: String = "",
@@ -23,16 +29,26 @@ sealed class CreateBankEventForm {
   object SaveButtonClicked : CreateBankEventForm()
 }
 
-class CreateBankViewModel : ViewModel() {
+@HiltViewModel
+class CreateBankViewModel @Inject constructor(
+  private val repository: BankRepository
+) : ViewModel() {
   private val TAG = "CreateBankViewModel"
   private val _uiState = MutableStateFlow(CreateBankState())
   val uiState: StateFlow<CreateBankState> = _uiState.asStateFlow()
 
-  fun saveBank() {
+  suspend fun saveBank() {
     Log.d(TAG, "Função 'saveBank' Iniciada")
     Log.d(TAG, "Estado atual: ${uiState.value}")
 
-    //TODO: Implement save function
+    val newBank = Bank(
+      name = uiState.value.bankName,
+      account = uiState.value.account,
+      agencia = uiState.value.agency,
+      titular = uiState.value.owner
+    )
+
+    repository.insert(newBank);
   }
 
   fun onEvent(event: CreateBankEventForm) {
@@ -54,7 +70,9 @@ class CreateBankViewModel : ViewModel() {
       }
 
       is CreateBankEventForm.SaveButtonClicked -> {
-        saveBank()
+        viewModelScope.launch {
+          saveBank()
+        }
       }
     }
   }

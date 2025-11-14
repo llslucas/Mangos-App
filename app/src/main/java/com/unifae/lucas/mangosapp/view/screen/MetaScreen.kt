@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.unifae.lucas.mangosapp.view.component.Footer
 import com.unifae.lucas.mangosapp.view.component.MetaCard
+import com.unifae.lucas.mangosapp.view.component.NewCategory
 import com.unifae.lucas.mangosapp.view.component.ScreenHeader
 import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.viewmodel.MetaScreenViewModel
@@ -27,6 +28,7 @@ fun MetaScreen(
   viewModel: MetaScreenViewModel = viewModel(),
   onChangeToHome: () -> Unit = {} ,
   onChangeToExtrato: () -> Unit = {},
+  onChangeToNewCategory: () -> Unit = {}
 ) {
   val uiState = viewModel.uiState.collectAsState()
 
@@ -42,8 +44,10 @@ fun MetaScreen(
     ) {
       ScreenHeader(
         modifier = Modifier.padding(start = MangosAppTheme.sizing.md),
-        title =  "Metas",
-        onBack = {}
+        title =  "Metas/Categorias",
+        onBack = {
+          onChangeToHome()
+        }
       )
       Column(
         modifier = Modifier.
@@ -65,6 +69,11 @@ fun MetaScreen(
           categoria = "Lazer",
           meta = 500f,
           atingido = 460f,
+        )
+        NewCategory(
+          onClick = {
+            onChangeToNewCategory()
+          }
         )
       }
       Footer(

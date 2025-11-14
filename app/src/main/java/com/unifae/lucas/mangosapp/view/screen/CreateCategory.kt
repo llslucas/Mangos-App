@@ -29,7 +29,10 @@ import com.unifae.lucas.mangosapp.viewmodel.CreateCategoryViewModel
 @Composable
 fun CreateCategoryScreen(
   modifier: Modifier = Modifier,
-  viewModel: CreateCategoryViewModel = viewModel()
+  viewModel: CreateCategoryViewModel = viewModel(),
+  onChangeToExtrato: () -> Unit = {},
+  onChangeToHome: () -> Unit = {},
+  onChangeToMetas: () -> Unit = {},
 ) {
   val uiState by viewModel.uiState.collectAsState()
 
@@ -45,7 +48,7 @@ fun CreateCategoryScreen(
         ScreenHeader(
           modifier = Modifier.padding(start = MangosAppTheme.sizing.md),
           title =  "Novo Banco",
-          onBack = {}
+          onBack = {onChangeToMetas()}
         )
         SubHeader(
           modifier = Modifier.padding(MangosAppTheme.sizing.md),
@@ -86,8 +89,14 @@ fun CreateCategoryScreen(
         },
       )
       Footer(
-        selected = 1,
-        onClick = {}
+        selected = 0,
+        onClick = { button ->
+          when(button){
+            1 -> onChangeToExtrato()
+            2 -> onChangeToHome()
+            3 -> onChangeToMetas()
+          }
+        }
       )
     }
   }
