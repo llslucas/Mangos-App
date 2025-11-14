@@ -25,12 +25,28 @@ import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.view.theme.Primary
 import com.unifae.lucas.mangosapp.view.theme.Typography
 
+/**
+ * Enum que define tipos de categorias de despesa, cada um associado a um ícone.
+ *
+ * @param icon Ícone vetorial representando a categoria.
+ */
 enum class ExpenseCategoryType(val icon: ImageVector) {
   BANK(Icons.Default.AccountBalance),
   FOOD(Icons.Default.Restaurant),
   HEALTH(Icons.Default.MedicalServices)
 }
 
+/**
+ * Composable que exibe uma categoria de despesa com ícone, nome e valor monetário.
+ *
+ * @param modifier Modifier opcional aplicado ao Row.
+ * @param type Tipo da categoria, que define o ícone.
+ * @param name Nome da categoria exibido como texto.
+ * @param value Valor numérico da despesa.
+ * @param showValues Se true, mostra o valor; se false, oculta com traços.
+ *
+ * Uso: item de lista para exibir categorias de despesas em relatórios ou dashboards.
+ */
 @Composable
 fun ExpenseCategory(
   modifier: Modifier = Modifier,
@@ -39,11 +55,13 @@ fun ExpenseCategory(
   value: Float,
   showValues: Boolean,
 ) {
+  // Layout horizontal que alinha ícone e texto verticalmente
   Row(
     modifier = modifier,
     verticalAlignment = Alignment.CenterVertically,
     horizontalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.sm)
   ) {
+    // Ícone circular com fundo Primary e padding interno
     Icon(
       modifier = Modifier
         .size(40.dp)
@@ -53,6 +71,7 @@ fun ExpenseCategory(
       contentDescription = null,
       tint = DarkTextPrimary
     )
+    // Coluna com nome da categoria e valor monetário
     Column {
       Text(
         text = name,
@@ -68,6 +87,10 @@ fun ExpenseCategory(
   }
 }
 
+/**
+ * Preview do ExpenseCategory com exemplo de categoria de comida.
+ * Mostra o componente dentro do tema da aplicação.
+ */
 @PreviewLightDark
 @Composable
 private fun ExpenseCategoryPreview() {

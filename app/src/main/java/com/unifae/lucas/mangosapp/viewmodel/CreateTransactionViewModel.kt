@@ -7,6 +7,16 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import android.util.Log
 
+/**
+ * Estado da UI para criação de transação, contendo campos do formulário e indicador de carregamento.
+ *
+ * @param type Tipo da transação (ex.: "Receita" ou "Despesa").
+ * @param date Data da transação.
+ * @param value Valor da transação como string.
+ * @param bank Banco associado.
+ * @param category Categoria da transação.
+ * @param isLoading Indica se está carregando (não usado atualmente).
+ */
 data class CreateTransactionState(
   val type: String = "",
   val date: String = "",
@@ -16,6 +26,9 @@ data class CreateTransactionState(
   val isLoading: Boolean = false,
 )
 
+/**
+ * Eventos do formulário para criação de transação, usados para atualizar estado ou salvar.
+ */
 sealed class CreateTransactionEventForm {
   data class TypeChanged(val value: String) : CreateTransactionEventForm()
   data class DateChanged(val value: String) : CreateTransactionEventForm()
@@ -25,11 +38,17 @@ sealed class CreateTransactionEventForm {
   object SaveButtonClicked : CreateTransactionEventForm()
 }
 
+/**
+ * ViewModel para gerenciar estado e lógica de criação de transação.
+ */
 class CreateTransactionViewModel : ViewModel() {
   private val TAG = "CreateTransactionViewModel"
   private val _uiState = MutableStateFlow(CreateTransactionState())
   val uiState: StateFlow<CreateTransactionState> = _uiState.asStateFlow()
 
+  /**
+   * Salva uma nova transação (implementação pendente).
+   */
   fun saveTransaction() {
     Log.d(TAG, "Função 'saveTransaction' Iniciada")
     Log.d(TAG, "Estado atual: ${uiState.value}")
@@ -37,6 +56,11 @@ class CreateTransactionViewModel : ViewModel() {
     //TODO: Implement save function
   }
 
+  /**
+   * Processa eventos do formulário, atualizando estado ou salvando transação.
+   *
+   * @param event Evento a ser processado.
+   */
   fun onEvent(event: CreateTransactionEventForm) {
     when (event) {
       is CreateTransactionEventForm.TypeChanged -> {
@@ -60,6 +84,7 @@ class CreateTransactionViewModel : ViewModel() {
       }
 
       is CreateTransactionEventForm.SaveButtonClicked -> {
+        // Chama função de salvar (atualmente com TODO)
         saveTransaction()
       }
 

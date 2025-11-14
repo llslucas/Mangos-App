@@ -26,6 +26,12 @@ import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.view.theme.Primary
 import com.unifae.lucas.mangosapp.view.theme.Typography
 
+/**
+ * Representa os bancos suportados pelo componente `BankBalance`.
+ *
+ * Cada enum encapsula o recurso drawable usado como ícone do banco.
+ * Use este tipo para escolher a imagem exibida ao lado do nome e saldo.
+ */
 enum class BankType(val icon: Int) {
   ITAU(R.drawable.itau_unibanco),
   NUBANK(R.drawable.nubank),
@@ -33,8 +39,38 @@ enum class BankType(val icon: Int) {
   BB(R.drawable.banco_do_brasil)
 }
 
+
+/**
+ * Composable que exibe o nome do banco, o saldo formatado e um botão de ação.
+ *
+ * Este componente é intencionalmente stateless: recebe todos os valores como
+ * parâmetros e notifica eventos através de `onClick`.
+ *
+ * Parâmetros:
+ * @param modifier Modifier opcional para aplicar ao contêiner externo (Row).
+ * @param name Nome do banco ou conta a ser exibido.
+ * @param value Valor monetário do saldo. Este valor é apresentado por
+ *              `CurrencyText`, que formata o float adequadamente.
+ * @param bankType Enum [BankType] que determina o ícone mostrado.
+ * @param showValues Se `true`, o saldo é mostrado; se `false`, o componente
+ *                   `CurrencyText` pode ocultar ou mascarar o valor conforme
+ *                   a implementação interna.
+ * @param onClick Callback acionado ao tocar no botão de ação (ícone de +).
+ *
+ * Observações de performance:
+ * - Como é stateless, evite recriar lambdas externos sem necessidade para
+ *   prevenir recompositions desnecessárias. Passar um `remember` ou um
+ *   lambda estável é recomendado quando o `onClick` é criado inline.
+ */
 @Composable
-fun BankBalance(modifier: Modifier = Modifier, name: String, value: Float, bankType: BankType, showValues: Boolean, onClick: () -> Unit) {
+fun BankBalance(
+  modifier: Modifier = Modifier,
+  name: String,
+  value: Float,
+  bankType: BankType,
+  showValues: Boolean,
+  onClick: () -> Unit
+) {
   Row(
     modifier = modifier.fillMaxWidth(),
     verticalAlignment = Alignment.CenterVertically,
@@ -81,6 +117,10 @@ fun BankBalance(modifier: Modifier = Modifier, name: String, value: Float, bankT
 
 @PreviewLightDark
 @Composable
+/**
+ * Preview simples do `BankBalance` usando o tema do app.
+ * Serve para visualização rápida em Light/Dark no Android Studio.
+ */
 private fun BankBalancePreview() {
   MangosAppTheme {
     BankBalance(

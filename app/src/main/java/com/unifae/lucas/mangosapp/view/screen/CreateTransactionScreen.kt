@@ -25,6 +25,17 @@ import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.viewmodel.CreateTransactionEventForm
 import com.unifae.lucas.mangosapp.viewmodel.CreateTransactionViewModel
 
+/**
+ * Tela para criação de uma nova transação, com formulário de entrada e navegação.
+ *
+ * @param modifier Modifier opcional aplicado ao Scaffold.
+ * @param viewModel ViewModel para gerenciar estado e eventos.
+ * @param onChangeToExtrato Função para navegar à tela de extrato.
+ * @param onChangeToHome Função para navegar à tela inicial.
+ * @param onChangeToMetas Função para navegar à tela de metas.
+ *
+ * Uso: tela de formulário para registrar transações financeiras, integrada com ViewModel para estado reativo.
+ */
 @Composable
 fun CreateTransactionScreen(
   modifier: Modifier = Modifier,
@@ -33,9 +44,12 @@ fun CreateTransactionScreen(
   onChangeToHome: () -> Unit = {},
   onChangeToMetas: () -> Unit = {},
 ) {
+  // Coleta o estado da UI do ViewModel
   val uiState by viewModel.uiState.collectAsState()
 
+  // Scaffold para estrutura básica da tela
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+    // Coluna principal dividindo cabeçalho, formulário, botão e footer
     Column(
       modifier = Modifier
         .padding(innerPadding)
@@ -43,6 +57,7 @@ fun CreateTransactionScreen(
         .fillMaxSize(),
       verticalArrangement = Arrangement.SpaceBetween,
     ) {
+      // Seção superior: cabeçalho e subtítulo
       Column {
         ScreenHeader(
           modifier = Modifier.padding(start = MangosAppTheme.sizing.md),
@@ -54,6 +69,7 @@ fun CreateTransactionScreen(
           title = "Registre suas receitas e despesas para acompanhar melhor suas finanças."
         )
       }
+      // Seção central: formulário com campos de entrada
       Column(
         modifier = Modifier
           .fillMaxHeight(.8f)
@@ -101,6 +117,7 @@ fun CreateTransactionScreen(
           }
         )
       }
+      // Botão de salvar
       CustomButton(
         modifier = Modifier
           .fillMaxWidth()
@@ -110,6 +127,7 @@ fun CreateTransactionScreen(
           viewModel.onEvent(CreateTransactionEventForm.SaveButtonClicked)
         },
       )
+      // Footer de navegação
       Footer(
         selected = 0,
         onClick = { button ->
@@ -124,6 +142,10 @@ fun CreateTransactionScreen(
   }
 }
 
+/**
+ * Preview da CreateTransactionScreen.
+ * Mostra a tela dentro do tema da aplicação.
+ */
 @PreviewLightDark
 @Composable
 private fun CreateTransactionScreenPreview() {

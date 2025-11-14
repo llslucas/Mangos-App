@@ -26,17 +26,28 @@ import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.view.theme.Primary
 import com.unifae.lucas.mangosapp.view.theme.Typography
 
+/**
+ * Composable que exibe uma linha com texto "Criar novo banco" e um botão de ícone para adicionar.
+ *
+ * @param modifier Modifier opcional aplicado ao Row externo.
+ * @param onClick Função lambda executada ao clicar no botão de adicionar.
+ *
+ * Uso: item de lista ou seção para permitir a criação de um novo banco em telas de gerenciamento financeiro.
+ */
 @Composable
 fun NewBank(modifier: Modifier = Modifier, onClick: () -> Unit) {
+  // Layout horizontal para texto e botão, ocupando largura total
   Row(
     modifier = modifier.fillMaxWidth(),
     verticalAlignment = Alignment.CenterVertically,
     horizontalArrangement = Arrangement.SpaceBetween
   ){
+    // Row interna com texto, alinhado verticalmente
     Row(
       verticalAlignment = Alignment.CenterVertically,
       horizontalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.sm)
     ) {
+      // Coluna com o texto do título
       Column {
         Text(
           text = "Criar novo banco",
@@ -45,6 +56,7 @@ fun NewBank(modifier: Modifier = Modifier, onClick: () -> Unit) {
         )
       }
     }
+    // Botão de ícone para adicionar, com tamanho personalizado
     IconButton(
       onClick = onClick,
     ) {
@@ -58,6 +70,10 @@ fun NewBank(modifier: Modifier = Modifier, onClick: () -> Unit) {
   }
 }
 
+/**
+ * Preview do NewBank com exemplo básico.
+ * Mostra o componente dentro do tema da aplicação.
+ */
 @PreviewLightDark
 @Composable
 private fun BankBalancePreview() {

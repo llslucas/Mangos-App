@@ -20,14 +20,26 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.view.theme.Typography
 
+/**
+ * Composable que exibe uma barra de pesquisa com ícone de lupa, placeholder e campo de entrada arredondado.
+ *
+ * @param modifier Modifier opcional aplicado ao OutlinedTextField.
+ * @param placeholder Texto exibido quando o campo está vazio.
+ * @param value Valor atual do texto no campo.
+ * @param onChange Função lambda chamada quando o texto muda.
+ *
+ * Uso: campo de busca em listas ou telas de pesquisa, com estilo arredondado e ícone integrado.
+ */
 @Composable
 fun SearchBar(modifier: Modifier = Modifier, placeholder: String, value: String, onChange: (value: String) -> Unit) {
+  // Campo de texto outlined com forma circular e fundo do tema
   OutlinedTextField(
     shape = CircleShape,
     modifier = modifier.fillMaxWidth().background(color = MaterialTheme.colorScheme.surface, shape = CircleShape),
     value = value,
     onValueChange = onChange,
     leadingIcon = {
+      // Ícone de busca à esquerda, com padding
       Icon(
         modifier = Modifier.padding(start = MangosAppTheme.sizing.md),
         imageVector= Icons.Default.Search,
@@ -36,6 +48,7 @@ fun SearchBar(modifier: Modifier = Modifier, placeholder: String, value: String,
       )
     },
     placeholder = {
+      // Texto placeholder com estilo do tema
       Text(
         text = placeholder,
         style = Typography.displayMedium,
@@ -46,6 +59,10 @@ fun SearchBar(modifier: Modifier = Modifier, placeholder: String, value: String,
   )
 }
 
+/**
+ * Preview do SearchBar com placeholder "Buscar".
+ * Mostra o componente dentro do tema da aplicação.
+ */
 @PreviewLightDark
 @Composable
 private fun SearchBarPreview() {

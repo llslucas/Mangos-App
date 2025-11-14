@@ -36,31 +36,49 @@ import com.unifae.lucas.mangosapp.view.theme.Typography
 import com.unifae.lucas.mangosapp.viewmodel.DashboardScreenEvent
 import com.unifae.lucas.mangosapp.viewmodel.DashboardScreenViewModel
 
+/**
+ * Tela principal do dashboard, exibindo saldo, receitas/despesas, despesas por categoria e saldos em contas.
+ *
+ * @param viewModel ViewModel para gerenciar estado e eventos.
+ * @param onChangeToExtrato Função para navegar à tela de extrato.
+ * @param onChangeToMetas Função para navegar à tela de metas.
+ * @param onChangeToNewBank Função para navegar à tela de criação de banco.
+ * @param onChangeToNewTransaction Função para navegar à tela de criação de transação.
+ *
+ * Uso: tela inicial do app, mostrando resumo financeiro com navegação integrada.
+ */
 @Composable
 fun DashboardScreen(
   viewModel: DashboardScreenViewModel = viewModel(),
   onChangeToExtrato: () -> Unit = {},
+  onChangeToHome: () -> Unit = {},
   onChangeToMetas: () -> Unit = {},
   onChangeToNewBank: () -> Unit = {},
   onChangeToNewTransaction: () -> Unit = {},
 ) {
+  // Coleta o estado da UI do ViewModel
   val uiState by viewModel.uiState.collectAsState()
 
+  // Scaffold para estrutura básica da tela
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+    // Coluna principal dividindo header, body cards e footer
     Column(
       modifier = Modifier
         .padding(innerPadding)
         .fillMaxSize(),
       verticalArrangement = Arrangement.SpaceBetween
     ) {
+      // HeaderCard com saldo mensal e receitas/despesas
       HeaderCard(
         modifier = Modifier.height(210.dp)
       ) {
+        // Coluna centralizada com mês, saldo e resultados
         Column(
           modifier = Modifier.fillMaxSize(),
           horizontalAlignment = Alignment.CenterHorizontally,
           verticalArrangement = Arrangement.SpaceEvenly
         ) {
+          // Row com mês e ícone de dropdown
           Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
@@ -75,6 +93,7 @@ fun DashboardScreen(
             )
           }
 
+          // Coluna com texto "Seu Saldo" e valor com ícone de toggle
           Column(
             horizontalAlignment = Alignment.CenterHorizontally
           ) {
@@ -99,6 +118,7 @@ fun DashboardScreen(
             }
           }
 
+          // Row com receitas e despesas
           Row(
             horizontalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.xl)
           ) {
@@ -114,15 +134,18 @@ fun DashboardScreen(
           }
         }
       }
+      // BodyCard com despesas por categoria
       BodyCard(
         title = "Despesas por Categoria",
         modifier = Modifier.height(250.dp)
       ) {
+        // Row com duas colunas de categorias
         Row(
           modifier = Modifier.fillMaxSize(),
           verticalAlignment = Alignment.CenterVertically,
           horizontalArrangement = Arrangement.SpaceEvenly
         ) {
+          // Primeira coluna de categorias
           Column(
             verticalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.md)
           ) {
@@ -145,6 +168,7 @@ fun DashboardScreen(
               showValues = uiState.showValues
             )
           }
+          // Segunda coluna de categorias
           Column(
             verticalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.md)
           ) {
@@ -169,10 +193,12 @@ fun DashboardScreen(
           }
         }
       }
+      // BodyCard com saldo em contas
       BodyCard(
         title = "Saldo em Contas",
         modifier = Modifier.height(250.dp)
       ) {
+        // Coluna com saldos de bancos e opção de novo banco
         Column(
           modifier = Modifier
             .padding(MangosAppTheme.sizing.lg)
@@ -199,6 +225,7 @@ fun DashboardScreen(
           )
         }
       }
+      // Footer de navegação
       Footer(
         selected = 2,
         onClick = { button ->
@@ -212,7 +239,10 @@ fun DashboardScreen(
   }
 }
 
-
+/**
+ * Preview da DashboardScreen.
+ * Mostra a tela dentro do tema da aplicação.
+ */
 @PreviewLightDark
 @Composable
 private fun DashboardScreenPreview() {

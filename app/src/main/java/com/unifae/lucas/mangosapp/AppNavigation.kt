@@ -11,6 +11,10 @@ import com.unifae.lucas.mangosapp.view.screen.DashboardScreen
 import com.unifae.lucas.mangosapp.view.screen.ExtratoScreen
 import com.unifae.lucas.mangosapp.view.screen.MetaScreen
 
+/**
+ * Função composable que configura a navegação do app usando NavHost, definindo rotas para telas principais e de criação.
+ * A tela inicial é o dashboard, com navegação entre telas via callbacks.
+ */
 @Composable
 fun AppNavigation() {
   val navController = rememberNavController()
@@ -19,6 +23,7 @@ fun AppNavigation() {
     navController = navController,
     startDestination = AppRoutes.DASHBOARD_SCREEN
   ) {
+    // Rota para tela de dashboard, com navegações para extrato, metas, novo banco e nova transação
     composable(route = AppRoutes.DASHBOARD_SCREEN) {
       DashboardScreen(
         onChangeToExtrato = {
@@ -36,6 +41,7 @@ fun AppNavigation() {
       )
     }
 
+    // Rota para tela de extrato, com navegações para home e metas
     composable(route = AppRoutes.EXTRATO_SCREEN) {
       ExtratoScreen(
         onChangeToHome = {
@@ -47,6 +53,7 @@ fun AppNavigation() {
       )
     }
 
+    // Rota para tela de metas, com navegações para home, extrato e nova categoria
     composable(route = AppRoutes.META_SCREEN) {
       MetaScreen(
         onChangeToHome = {
@@ -61,6 +68,7 @@ fun AppNavigation() {
       )
     }
 
+    // Rota para tela de criação de banco, com navegações para extrato, home e metas
     composable(route = AppRoutes.CREATE_BANK_SCREEN) {
       CreateBankScreen(
         onChangeToExtrato = {
@@ -75,6 +83,7 @@ fun AppNavigation() {
       )
     }
 
+    // Rota para tela de criação de categoria, com navegações para extrato, home e metas
     composable(route = AppRoutes.CREATE_CATEGORY_SCREEN) {
       CreateCategoryScreen(
         onChangeToExtrato = {
@@ -89,6 +98,7 @@ fun AppNavigation() {
       )
     }
 
+    // Rota para tela de criação de transação, com navegações para extrato, home e metas
     composable(route = AppRoutes.CREATE_TRANSACTION_SCREEN) {
       CreateTransactionScreen(
         onChangeToExtrato = {

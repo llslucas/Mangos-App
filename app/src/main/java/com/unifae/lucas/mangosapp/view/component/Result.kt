@@ -20,23 +20,38 @@ import com.unifae.lucas.mangosapp.view.theme.Primary
 import com.unifae.lucas.mangosapp.view.theme.Secondary
 import com.unifae.lucas.mangosapp.view.theme.Typography
 
+/**
+ * Composable que exibe um resultado financeiro com ícone (seta para cima/baixo), texto ("Receitas" ou "Despesas") e valor monetário.
+ *
+ * @param modifier Modifier opcional aplicado ao Row.
+ * @param value Valor numérico (positivo para receitas, negativo para despesas).
+ * @param showValues Se true, mostra o valor; se false, oculta com traços.
+ *
+ * Uso: exibir resumos de receitas ou despesas em dashboards, com indicação visual baseada no sinal do valor.
+ */
 @Composable
 fun Result(modifier: Modifier = Modifier, value: Float, showValues: Boolean) {
+  // Determina ícone baseado no sinal: seta para cima se positivo (receitas), para baixo se negativo (despesas)
   val icon = if (value > 0) Icons.Default.ArrowCircleUp else Icons.Default.ArrowCircleDown
+  // Cor baseada no sinal: Primary para receitas, Secondary para despesas
   val color = if (value > 0) Primary else Secondary
+  // Texto baseado no sinal: "Receitas" ou "Despesas"
   val text = if (value > 0) "Receitas" else "Despesas"
 
+  // Layout horizontal para ícone e texto vertical
   Row(
     modifier = modifier,
     verticalAlignment = Alignment.CenterVertically,
     horizontalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.sm)
   ) {
+    // Ícone com tamanho fixo e cor dinâmica
     Icon(
       modifier = Modifier.size(43.dp),
       imageVector = icon,
       contentDescription = null,
       tint= color
     )
+    // Coluna com texto do tipo e valor monetário
     Column {
       Text(
         text= text,
@@ -52,6 +67,10 @@ fun Result(modifier: Modifier = Modifier, value: Float, showValues: Boolean) {
   }
 }
 
+/**
+ * Preview do Result com exemplo de valor negativo (despesas).
+ * Mostra o componente dentro do tema da aplicação.
+ */
 @PreviewLightDark
 @Composable
 private fun ResultPreview() {

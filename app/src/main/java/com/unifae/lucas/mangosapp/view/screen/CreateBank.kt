@@ -22,6 +22,17 @@ import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.viewmodel.CreateBankEventForm
 import com.unifae.lucas.mangosapp.viewmodel.CreateBankViewModel
 
+/**
+ * Tela para criação de um novo banco, com formulário de entrada e navegação.
+ *
+ * @param modifier Modifier opcional aplicado ao Scaffold.
+ * @param viewModel ViewModel para gerenciar estado e eventos (injetado via Hilt).
+ * @param onChangeToExtrato Função para navegar à tela de extrato.
+ * @param onChangeToHome Função para navegar à tela inicial.
+ * @param onChangeToMetas Função para navegar à tela de metas.
+ *
+ * Uso: tela de formulário para cadastrar bancos, integrada com ViewModel para estado reativo.
+ */
 @Composable
 fun CreateBankScreen(
   modifier: Modifier = Modifier,
@@ -30,9 +41,12 @@ fun CreateBankScreen(
   onChangeToHome: () -> Unit = {},
   onChangeToMetas: () -> Unit = {},
 ) {
+  // Coleta o estado da UI do ViewModel
   val uiState by viewModel.uiState.collectAsState()
 
+  // Scaffold para estrutura básica da tela
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+    // Coluna principal dividindo cabeçalho, formulário, botão e footer
     Column(
       modifier = Modifier
         .padding(innerPadding)
@@ -40,6 +54,7 @@ fun CreateBankScreen(
         .fillMaxSize(),
       verticalArrangement = Arrangement.SpaceBetween,
     ) {
+      // Seção superior: cabeçalho e subtítulo
       Column {
         ScreenHeader(
           modifier = Modifier.padding(start = MangosAppTheme.sizing.md),
@@ -54,6 +69,7 @@ fun CreateBankScreen(
         )
       }
 
+      // Seção central: formulário com campos de entrada
       Column(
         modifier = Modifier.fillMaxHeight(.8f).padding(horizontal = MangosAppTheme.sizing.md),
         verticalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.md)
@@ -91,6 +107,7 @@ fun CreateBankScreen(
           }
         )
       }
+      // Botão de salvar
       CustomButton(
         modifier = Modifier
           .fillMaxWidth()
@@ -100,6 +117,7 @@ fun CreateBankScreen(
           viewModel.onEvent(CreateBankEventForm.SaveButtonClicked)
         },
       )
+      // Footer de navegação
       Footer(
         selected = 0,
         onClick = { button ->
@@ -114,6 +132,10 @@ fun CreateBankScreen(
   }
 }
 
+/**
+ * Preview da CreateBankScreen.
+ * Mostra a tela dentro do tema da aplicação.
+ */
 @PreviewLightDark
 @Composable
 private fun CreateBankScreenPreview() {

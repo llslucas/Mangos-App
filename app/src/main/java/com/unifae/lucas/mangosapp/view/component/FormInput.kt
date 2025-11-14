@@ -19,6 +19,17 @@ import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.view.theme.Primary
 import com.unifae.lucas.mangosapp.view.theme.Typography
 
+/**
+ * Composable que exibe um campo de entrada de formulário com título, placeholder e bordas arredondadas.
+ *
+ * @param modifier Modifier opcional aplicado ao Column.
+ * @param title Texto do rótulo exibido acima do campo.
+ * @param placeholder Texto exibido quando o campo está vazio.
+ * @param value Valor atual do texto no campo.
+ * @param onChange Função lambda chamada quando o texto muda.
+ *
+ * Uso: entrada de texto em formulários, com estilos personalizados do tema.
+ */
 @Composable
 fun FormInput(
   modifier: Modifier = Modifier,
@@ -27,16 +38,19 @@ fun FormInput(
   value: String,
   onChange: (text: String) -> Unit,
 ) {
+  // Layout vertical para título e campo de texto, com espaçamento do tema
   Column(
     modifier = modifier,
     Arrangement.spacedBy(MangosAppTheme.sizing.sm)
   ) {
+    // Título do campo, com padding lateral
     Text(
       text = title,
       style = Typography.headlineMedium,
       color = MaterialTheme.colorScheme.onBackground,
       modifier = Modifier.padding(start = MangosAppTheme.sizing.sm)
     )
+    // Campo de texto outlined com forma circular e cores personalizadas
     OutlinedTextField(
       modifier = Modifier.fillMaxWidth(),
       value = value,
@@ -62,6 +76,10 @@ fun FormInput(
   }
 }
 
+/**
+ * Preview do FormInput com exemplo de título e placeholder.
+ * Mostra o componente dentro do tema da aplicação, usando estado mutável.
+ */
 @PreviewLightDark
 @Composable
 private fun FormInputPreview() {

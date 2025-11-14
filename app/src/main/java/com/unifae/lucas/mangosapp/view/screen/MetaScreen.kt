@@ -22,6 +22,17 @@ import com.unifae.lucas.mangosapp.view.component.ScreenHeader
 import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.viewmodel.MetaScreenViewModel
 
+/**
+ * Tela de metas e categorias, exibindo progresso de metas e opção para criar nova categoria.
+ *
+ * @param modifier Modifier opcional aplicado ao Scaffold.
+ * @param viewModel ViewModel para gerenciar estado.
+ * @param onChangeToHome Função para navegar à tela inicial.
+ * @param onChangeToExtrato Função para navegar à tela de extrato.
+ * @param onChangeToNewCategory Função para navegar à tela de criação de categoria.
+ *
+ * Uso: tela para visualizar e gerenciar metas de despesa por categoria.
+ */
 @Composable
 fun MetaScreen(
   modifier: Modifier = Modifier,
@@ -30,9 +41,12 @@ fun MetaScreen(
   onChangeToExtrato: () -> Unit = {},
   onChangeToNewCategory: () -> Unit = {}
 ) {
+  // Coleta o estado da UI do ViewModel
   val uiState = viewModel.uiState.collectAsState()
 
+  // Scaffold para estrutura básica da tela
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+    // Coluna principal dividindo cabeçalho, lista de metas e footer
     Column(
       modifier = Modifier
         .padding(innerPadding)
@@ -42,6 +56,7 @@ fun MetaScreen(
         .fillMaxSize(),
       verticalArrangement = Arrangement.SpaceBetween,
     ) {
+      // Cabeçalho com botão de voltar
       ScreenHeader(
         modifier = Modifier.padding(start = MangosAppTheme.sizing.md),
         title =  "Metas/Categorias",
@@ -49,33 +64,39 @@ fun MetaScreen(
           onChangeToHome()
         }
       )
+      // Coluna com lista de MetaCard e NewCategory
       Column(
         modifier = Modifier.
           fillMaxHeight(.85f)
           .padding(horizontal = MangosAppTheme.sizing.sm),
         verticalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.md)
       ){
+        // MetaCard para Alimentação
         MetaCard(
           categoria = "Alimentação",
           meta = 1000f,
           atingido = 500f,
         )
+        // MetaCard para Saúde
         MetaCard(
           categoria = "Saúde",
           meta = 800f,
           atingido = 500f,
         )
+        // MetaCard para Lazer
         MetaCard(
           categoria = "Lazer",
           meta = 500f,
           atingido = 460f,
         )
+        // Componente para criar nova categoria
         NewCategory(
           onClick = {
             onChangeToNewCategory()
           }
         )
       }
+      // Footer de navegação
       Footer(
         selected = 3,
         onClick = { button ->
@@ -89,6 +110,10 @@ fun MetaScreen(
   }
 }
 
+/**
+ * Preview da MetaScreen.
+ * Mostra a tela dentro do tema da aplicação.
+ */
 @PreviewLightDark
 @Composable
 private fun MetaScreenPreview() {

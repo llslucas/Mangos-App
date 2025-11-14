@@ -25,15 +25,28 @@ import com.unifae.lucas.mangosapp.view.theme.Secondary
 import com.unifae.lucas.mangosapp.view.theme.Typography
 import kotlin.math.absoluteValue
 
+/**
+ * Composable que exibe um Card com informações de meta de despesa, incluindo progresso linear, valores e percentual.
+ *
+ * @param modifier Modifier opcional aplicado ao Column externo.
+ * @param categoria Nome da categoria da meta.
+ * @param meta Valor total da meta em reais.
+ * @param atingido Valor já atingido em reais.
+ *
+ * Uso: exibir progresso de metas em dashboards financeiros, com indicador visual e cores baseadas no progresso.
+ */
 @SuppressLint("DefaultLocale")
 @Composable
 fun MetaCard(modifier: Modifier = Modifier, categoria: String, meta: Float, atingido: Float) {
+  // Calcula o percentual de progresso (atingido / meta)
   val percent = atingido/meta
 
+  // Layout vertical para o Card, com espaçamento do tema
   Column(
     modifier = modifier
     ,verticalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.sm)
   ) {
+    // Card principal com altura fixa e bordas arredondadas
     Card(
       modifier = Modifier
         .fillMaxWidth()
@@ -43,6 +56,7 @@ fun MetaCard(modifier: Modifier = Modifier, categoria: String, meta: Float, atin
         MaterialTheme.colorScheme.surface
       )
     ) {
+      // Coluna interna com padding e alinhamento
       Column(
         modifier=Modifier
           .padding(MangosAppTheme.sizing.md)
@@ -50,14 +64,17 @@ fun MetaCard(modifier: Modifier = Modifier, categoria: String, meta: Float, atin
         ,verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.Start
       ) {
+        // Texto da categoria
         Text(
           text = categoria,
           style = Typography.bodyMedium,
           color = MaterialTheme.colorScheme.onBackground
         )
+        // Coluna para barra de progresso e valores
         Column(
           verticalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.xs)
         ) {
+          // Barra de progresso linear, cor muda se >90%
           LinearProgressIndicator(
             progress = { percent },
             modifier = Modifier.fillMaxWidth().height(MangosAppTheme.sizing.sm),
@@ -65,6 +82,7 @@ fun MetaCard(modifier: Modifier = Modifier, categoria: String, meta: Float, atin
             color = if (percent > 0.9) Secondary else Primary,
             drawStopIndicator = {}
           )
+          // Row com valor atingido e percentual
           Row (
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
@@ -82,6 +100,7 @@ fun MetaCard(modifier: Modifier = Modifier, categoria: String, meta: Float, atin
           }
         }
         
+        // Texto da meta total
         Text(
           text = "Meta: R$ ${String.format("%.2f", meta.absoluteValue)}",
           style = Typography.bodyMedium
@@ -91,6 +110,10 @@ fun MetaCard(modifier: Modifier = Modifier, categoria: String, meta: Float, atin
   }
 }
 
+/**
+ * Preview do MetaCard com exemplo de categoria "Alimentação".
+ * Mostra o componente dentro do tema da aplicação.
+ */
 @PreviewLightDark
 @Composable
 private fun MetaCardPreview() {

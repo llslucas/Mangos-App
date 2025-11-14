@@ -18,13 +18,24 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.view.theme.Typography
 
+/**
+ * Composable que exibe um cabeçalho de tela com botão de voltar, título centralizado e espaçador à direita.
+ *
+ * @param modifier Modifier opcional aplicado ao Row.
+ * @param title Texto do título exibido no centro.
+ * @param onBack Função lambda executada ao clicar no botão de voltar.
+ *
+ * Uso: cabeçalho padrão para telas com navegação de retorno, mantendo título centralizado.
+ */
 @Composable
 fun ScreenHeader(modifier: Modifier = Modifier, title: String, onBack: () -> Unit) {
+  // Layout horizontal para botão, título e espaçador, ocupando largura total
   Row(
     modifier = modifier.fillMaxWidth(),
     verticalAlignment = Alignment.CenterVertically,
     horizontalArrangement = Arrangement.SpaceBetween,
   ) {
+    // Botão de ícone para voltar, com tamanho do tema
     IconButton(
       modifier = Modifier.size(MangosAppTheme.sizing.lg),
       onClick = {
@@ -39,17 +50,23 @@ fun ScreenHeader(modifier: Modifier = Modifier, title: String, onBack: () -> Uni
       )
     }
 
+    // Título centralizado
     Text(
       text = title,
       style = Typography.headlineLarge,
       color = MaterialTheme.colorScheme.onBackground
     )
+    // Espaçador invisível para equilibrar o layout
     Spacer(
       modifier.size(MangosAppTheme.sizing.lg)
     )
   }
 }
 
+/**
+ * Preview do ScreenHeader com título "Extrato".
+ * Mostra o componente dentro do tema da aplicação.
+ */
 @PreviewLightDark
 @Composable
 private fun ScreenHeaderPreview() {

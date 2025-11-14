@@ -24,8 +24,19 @@ import com.unifae.lucas.mangosapp.R
 import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.view.theme.Primary
 
+/**
+ * Composable que exibe uma barra de navegação inferior com três ícones clicáveis (página de solicitações, casa, troféu).
+ * O ícone selecionado é destacado com a cor Primary.
+ *
+ * @param modifier Modifier opcional aplicado ao Row.
+ * @param selected Índice do ícone atualmente selecionado (1, 2 ou 3).
+ * @param onClick Função lambda chamada ao clicar em um ícone, passando o índice selecionado.
+ *
+ * Uso: barra de navegação para alternar entre telas principais do app.
+ */
 @Composable
 fun Footer(modifier: Modifier = Modifier, selected: Int, onClick: (selected: Int) -> Unit) {
+  // Layout horizontal para os ícones de navegação, com fundo e padding do tema
   Row(
     modifier = modifier
       .background(color = MaterialTheme.colorScheme.surface)
@@ -35,6 +46,7 @@ fun Footer(modifier: Modifier = Modifier, selected: Int, onClick: (selected: Int
     verticalAlignment = Alignment.CenterVertically,
     horizontalArrangement = Arrangement.SpaceBetween,
   ) {
+    // Primeiro ícone: página de solicitações
     IconButton(
       modifier = Modifier
         .fillMaxHeight()
@@ -51,6 +63,7 @@ fun Footer(modifier: Modifier = Modifier, selected: Int, onClick: (selected: Int
       )
     }
 
+    // Segundo ícone: casa
     IconButton(
       modifier = Modifier
         .fillMaxHeight()
@@ -67,6 +80,7 @@ fun Footer(modifier: Modifier = Modifier, selected: Int, onClick: (selected: Int
       )
     }
 
+    // Terceiro ícone: troféu (usando painterResource)
     IconButton(
       modifier = Modifier
         .fillMaxHeight()
@@ -85,6 +99,10 @@ fun Footer(modifier: Modifier = Modifier, selected: Int, onClick: (selected: Int
   }
 }
 
+/**
+ * Preview do Footer com o segundo ícone selecionado.
+ * Mostra o componente dentro do tema da aplicação.
+ */
 @PreviewLightDark
 @Composable
 private fun FooterPreview() {

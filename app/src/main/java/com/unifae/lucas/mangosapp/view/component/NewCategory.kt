@@ -31,8 +31,17 @@ import com.unifae.lucas.mangosapp.view.theme.MangosAppTheme
 import com.unifae.lucas.mangosapp.view.theme.Primary
 import com.unifae.lucas.mangosapp.view.theme.Typography
 
+/**
+ * Composable que exibe um Card clicável para criar uma nova categoria, com texto e ícone de adicionar.
+ *
+ * @param modifier Modifier opcional aplicado ao Card.
+ * @param onClick Função lambda executada ao clicar no Card.
+ *
+ * Uso: item clicável em listas de categorias para permitir adição de novas categorias.
+ */
 @Composable
 fun NewCategory(modifier: Modifier = Modifier, onClick: () -> Unit) {
+  // Card clicável com altura fixa e bordas arredondadas
   Card(
     modifier = Modifier
       .fillMaxWidth()
@@ -45,6 +54,7 @@ fun NewCategory(modifier: Modifier = Modifier, onClick: () -> Unit) {
       MaterialTheme.colorScheme.surface
     )
   ) {
+    // Row interna centralizada com texto e ícone
     Row(
       modifier = Modifier
         .padding(MangosAppTheme.sizing.md)
@@ -52,14 +62,17 @@ fun NewCategory(modifier: Modifier = Modifier, onClick: () -> Unit) {
       horizontalArrangement = Arrangement.Center,
       verticalAlignment = Alignment.CenterVertically
     ) {
+      // Texto "Nova Categoria"
       Text(
         text = "Nova Categoria",
         style = Typography.bodyLarge,
         color = MaterialTheme.colorScheme.onBackground
       )
+      // Espaçador entre texto e ícone
       Spacer(
         modifier = Modifier.width(MangosAppTheme.sizing.sm)
       )
+      // Ícone de adicionar
       Icon(
         modifier = Modifier.size(36.dp),
         imageVector = Icons.Default.AddCircleOutline,
@@ -70,7 +83,10 @@ fun NewCategory(modifier: Modifier = Modifier, onClick: () -> Unit) {
   }
 }
 
-
+/**
+ * Preview do NewCategory com exemplo básico.
+ * Mostra o componente dentro do tema da aplicação.
+ */
 @PreviewLightDark
 @Composable
 private fun MetaCardPreview() {

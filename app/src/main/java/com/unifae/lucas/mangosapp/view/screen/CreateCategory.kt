@@ -26,6 +26,17 @@ import com.unifae.lucas.mangosapp.viewmodel.CreateBankViewModel
 import com.unifae.lucas.mangosapp.viewmodel.CreateCategoryEventForm
 import com.unifae.lucas.mangosapp.viewmodel.CreateCategoryViewModel
 
+/**
+ * Tela para criação de uma nova categoria, com formulário de entrada e navegação.
+ *
+ * @param modifier Modifier opcional aplicado ao Scaffold.
+ * @param viewModel ViewModel para gerenciar estado e eventos.
+ * @param onChangeToExtrato Função para navegar à tela de extrato.
+ * @param onChangeToHome Função para navegar à tela inicial.
+ * @param onChangeToMetas Função para navegar à tela de metas.
+ *
+ * Uso: tela de formulário para cadastrar categorias de despesa, integrada com ViewModel para estado reativo.
+ */
 @Composable
 fun CreateCategoryScreen(
   modifier: Modifier = Modifier,
@@ -34,9 +45,12 @@ fun CreateCategoryScreen(
   onChangeToHome: () -> Unit = {},
   onChangeToMetas: () -> Unit = {},
 ) {
+  // Coleta o estado da UI do ViewModel
   val uiState by viewModel.uiState.collectAsState()
 
+  // Scaffold para estrutura básica da tela
   Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+    // Coluna principal dividindo cabeçalho, formulário, botão e footer
     Column(
       modifier = Modifier
         .padding(innerPadding)
@@ -44,6 +58,7 @@ fun CreateCategoryScreen(
         .fillMaxSize(),
       verticalArrangement = Arrangement.SpaceBetween,
     ) {
+      // Seção superior: cabeçalho e subtítulo
       Column {
         ScreenHeader(
           modifier = Modifier.padding(start = MangosAppTheme.sizing.md),
@@ -56,6 +71,7 @@ fun CreateCategoryScreen(
         )
       }
 
+      // Seção central: formulário com campos de entrada
       Column(
         modifier = Modifier.fillMaxHeight(.8f).padding(horizontal = MangosAppTheme.sizing.md),
         verticalArrangement = Arrangement.spacedBy(MangosAppTheme.sizing.md)
@@ -79,6 +95,7 @@ fun CreateCategoryScreen(
         )
       }
 
+      // Botão de salvar
       CustomButton(
         modifier = Modifier
           .fillMaxWidth()
@@ -88,6 +105,7 @@ fun CreateCategoryScreen(
           viewModel.onEvent(CreateCategoryEventForm.SaveButtonClicked)
         },
       )
+      // Footer de navegação
       Footer(
         selected = 0,
         onClick = { button ->
@@ -102,6 +120,10 @@ fun CreateCategoryScreen(
   }
 }
 
+/**
+ * Preview da CreateCategoryScreen.
+ * Mostra a tela dentro do tema da aplicação.
+ */
 @PreviewLightDark
 @Composable
 private fun CreateCategoryScreenPreview() {
